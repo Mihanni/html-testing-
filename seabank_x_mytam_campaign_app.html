@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAY YES! Campaign - SeABank x Mỹ Tâm</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Cấu hình màu sắc chuẩn thương hiệu SeABank -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        seared: '#E3001B', // Đỏ thương hiệu SeABank
+                        seadark: '#111827', // Xám đen cho chữ
+                        sealight: '#F8F9FA', // Xám nhạt cho nền khối
+                        seaborder: '#E5E7EB'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #111827;
+            background-color: #FFFFFF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Bù trừ khoảng cách khi cuộn do header cố định */
+        section {
+            scroll-margin-top: 5rem; 
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        /* Tùy chỉnh thanh cuộn nhỏ gọn */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        
+        /* Hiệu ứng active cho Tab Giải pháp */
+        .sol-tab.active {
+            border-color: #E3001B;
+            color: #E3001B;
+            background-color: #FEF2F2;
+        }
+    </style>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo Area -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-10 h-10 bg-seared rounded flex items-center justify-center text-white font-bold text-2xl">
+                    <i class="fa-solid fa-coins"></i>
+                </div>
+                <span class="text-2xl font-extrabold text-seared tracking-tight">SeABank</span>
+            </div>
+            
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#overview" class="text-gray-600 font-medium hover:text-seared transition-colors">Tổng quan</a>
+                <a href="#solutions" class="text-gray-600 font-medium hover:text-seared transition-colors">Giải pháp</a>
+                <a href="#rewards" class="text-gray-600 font-medium hover:text-seared transition-colors">Đặc quyền</a>
+                <a href="#csr" class="text-gray-600 font-medium hover:text-seared transition-colors">Cộng đồng</a>
+            </nav>
+            
+            <!-- CTA Button -->
+            <a href="#register" class="bg-seared text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-red-700 transition-colors shadow-sm text-sm">
+                Đăng ký tư vấn
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section id="overview" class="bg-sealight pt-16 pb-24 border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <!-- Text Content -->
+                    <div class="lg:w-1/2 space-y-6">
+                        <div class="inline-flex items-center space-x-2 bg-red-100 text-seared px-3 py-1 rounded-full text-sm font-bold tracking-wide">
+                            <i class="fa-solid fa-star"></i>
+                            <span>CHIẾN DỊCH ĐỒNG HÀNH 2026</span>
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-seadark leading-tight">
+                            SAY <span class="text-seared">YES!</span><br/>CÙNG MỸ TÂM
+                        </h1>
+                        <p class="text-lg text-gray-600 md:pr-10 leading-relaxed">
+                            Khám phá chiến dịch đồng hành giữa SeABank và Đại sứ Mỹ Tâm. Đừng chờ đợi đến khi đủ nguồn lực, hãy tự tin nói "Có" với những cơ hội tốt đẹp hơn cho tương lai.
+                        </p>
+                        <div class="pt-4 flex flex-col sm:flex-row gap-4">
+                            <a href="#register" class="text-center bg-seared text-white px-8 py-3.5 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors shadow-md">
+                                Nhận Đặc Quyền Ngay
+                            </a>
+                            <a href="#solutions" class="text-center bg-white border border-gray-300 text-gray-700 px-8 py-3.5 rounded-lg font-bold text-lg hover:bg-gray-50 transition-colors">
+                                Khám phá Giải pháp
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Key Visual Image -->
+                    <div class="lg:w-1/2 relative w-full">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-red-100 to-transparent rounded-2xl transform -skew-y-3 z-0"></div>
+                        <img src="https://placehold.co/800x600/E3001B/FFFFFF?text=Key+Visual+My+Tam+Say+Yes" alt="Key Visual Mỹ Tâm Say Yes" class="relative z-10 w-full rounded-2xl shadow-xl object-cover h-[400px] lg:h-[500px]" onerror="this.src='https://placehold.co/800x600/E3001B/FFFFFF?text=Key+Visual'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-seadark">Tự tin nói <span class="text-seared">"Yes"</span> để tiến xa hơn</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Người dám nói "Yes" sẽ là người mở ra nhiều cơ hội hơn cho chính mình. SeABank đồng hành cùng bạn trên mọi chặng đường.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-white border border-gray-100 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-seared transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                        <div class="w-14 h-14 bg-red-50 rounded-lg flex items-center justify-center text-seared text-2xl mb-6">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-seadark mb-3">Dám Thử</h3>
+                        <p class="text-gray-600 leading-relaxed">Thử sức với những lĩnh vực mới, những trải nghiệm mà bạn hằng mong ước ngay từ bây giờ mà không cần chần chừ.</p>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="bg-white border border-gray-100 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-seared transform scale-x-100 transition-transform origin-left"></div>
+                        <div class="w-14 h-14 bg-red-50 rounded-lg flex items-center justify-center text-seared text-2xl mb-6">
+                            <i class="fa-solid fa-shoe-prints"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-seadark mb-3">Dám Bước Tới</h3>
+                        <p class="text-gray-600 leading-relaxed">Bước ra khỏi vùng an toàn. Một chuyến đi du lịch cùng gia đình, một căn nhà mơ ước không còn là đích đến quá xa vời.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white border border-gray-100 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-seared transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                        <div class="w-14 h-14 bg-red-50 rounded-lg flex items-center justify-center text-seared text-2xl mb-6">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-seadark mb-3">Dám Chọn</h3>
+                        <p class="text-gray-600 leading-relaxed">Chọn những điều tốt đẹp hơn cho tương lai với sự đồng hành tài chính vững chắc và bảo mật tuyệt đối từ SeABank.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solutions" class="py-20 bg-sealight border-y border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-12 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between">
+                    <div class="max-w-2xl">
+                        <h2 class="text-3xl md:text-4xl font-bold text-seadark mb-4">Giải pháp Tài chính Toàn diện</h2>
+                        <p class="text-gray-600 text-lg">SeABank mang đến các sản phẩm dịch vụ hiện đại, hỗ trợ bạn "Say Yes" và nắm bắt mọi cơ hội trong cuộc sống một cách dễ dàng.</p>
+                    </div>
+                </div>
+
+                <!-- Tabs & Content -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-2 md:p-6 flex flex-col lg:flex-row gap-8">
+                    
+                    <!-- Left: Navigation Tabs -->
+                    <div class="lg:w-1/3 flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 scrollbar-hide border-b lg:border-b-0 lg:border-r border-gray-100 pr-0 lg:pr-6">
+                        <button onclick="updateSolution(0)" class="sol-tab active w-full text-left px-5 py-4 rounded-xl border border-transparent font-semibold transition-all whitespace-nowrap lg:whitespace-normal flex items-center gap-3">
+                            <i class="fa-regular fa-credit-card text-lg w-6 text-center"></i> Thẻ tín dụng
+                        </button>
+                        <button onclick="updateSolution(1)" class="sol-tab w-full text-left px-5 py-4 rounded-xl border border-transparent font-semibold text-gray-600 hover:bg-gray-50 transition-all whitespace-nowrap lg:whitespace-normal flex items-center gap-3">
+                            <i class="fa-solid fa-mobile-screen text-lg w-6 text-center"></i> Ngân hàng số
+                        </button>
+                        <button onclick="updateSolution(2)" class="sol-tab w-full text-left px-5 py-4 rounded-xl border border-transparent font-semibold text-gray-600 hover:bg-gray-50 transition-all whitespace-nowrap lg:whitespace-normal flex items-center gap-3">
+                            <i class="fa-solid fa-piggy-bank text-lg w-6 text-center"></i> Tiết kiệm & Tích lũy
+                        </button>
+                        <button onclick="updateSolution(3)" class="sol-tab w-full text-left px-5 py-4 rounded-xl border border-transparent font-semibold text-gray-600 hover:bg-gray-50 transition-all whitespace-nowrap lg:whitespace-normal flex items-center gap-3">
+                            <i class="fa-solid fa-house-chimney text-lg w-6 text-center"></i> Vay vốn linh hoạt
+                        </button>
+                    </div>
+
+                    <!-- Right: Content Display -->
+                    <div class="lg:w-2/3 p-4 flex flex-col md:flex-row gap-8 items-center">
+                        <div class="md:w-1/2 space-y-6">
+                            <h3 id="sol-title" class="text-3xl font-bold text-seadark">Thẻ tín dụng SeABank</h3>
+                            <p id="sol-desc" class="text-gray-600 leading-relaxed">Say Yes với các trải nghiệm bạn xứng đáng. Tận hưởng hoàn tiền lên đến 10% cho mọi chi tiêu mua sắm, du lịch và ẩm thực.</p>
+                            <ul id="sol-features" class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <div class="mt-1 w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-check text-xs"></i></div>
+                                    <span class="text-gray-700 font-medium">Miễn phí thường niên năm đầu</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="mt-1 w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-check text-xs"></i></div>
+                                    <span class="text-gray-700 font-medium">Trả góp 0% lãi suất tại hàng ngàn đối tác</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="mt-1 w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-check text-xs"></i></div>
+                                    <span class="text-gray-700 font-medium">Hoàn tiền không giới hạn</span>
+                                </li>
+                            </ul>
+                            <div class="pt-4">
+                                <a href="#register" class="text-seared font-semibold hover:text-red-700 inline-flex items-center gap-2 group">
+                                    Đăng ký dịch vụ này <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 w-full">
+                            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                                <h4 class="text-center font-semibold text-gray-700 mb-2 text-sm uppercase tracking-wider">Mức độ ưu đãi (%)</h4>
+                                <div class="chart-container h-[250px]">
+                                    <canvas id="solutionChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rewards" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <span class="text-seared font-bold tracking-wider uppercase text-sm mb-2 block">Đặc quyền có 1-0-2</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-seadark">Đăng ký hôm nay, nhận quà liền tay</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Những phần quà mang đậm dấu ấn Mỹ Tâm đang chờ đợi những chủ nhân dám nói "Yes" tại SeABank.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Reward 1 -->
+                    <div class="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-all flex flex-col overflow-hidden group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://placehold.co/600x400/FDF2F4/E3001B?text=Gift+Box+SeABank+x+My+Tam" alt="Gift Box" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-4 left-4 bg-seared text-white text-xs font-bold px-3 py-1.5 rounded uppercase shadow-md">Limited</div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h3 class="text-xl font-bold text-seadark mb-2">Gift Box Độc Quyền</h3>
+                            <p class="text-gray-600 text-sm flex-1 leading-relaxed">Bộ sưu tập quà tặng "Made by SeABank x Mỹ Tâm" phiên bản giới hạn khi tham gia mở tài khoản, thẻ hoặc tiết kiệm.</p>
+                            <a href="#register" class="mt-4 text-seared font-semibold text-sm hover:underline">Nhận quà ngay <i class="fa-solid fa-angle-right ml-1"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Reward 2 -->
+                    <div class="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-all flex flex-col overflow-hidden group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://placehold.co/600x400/111827/FFFFFF?text=YES+Night+Private+Concert" alt="Concert Ticket" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-4 left-4 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1.5 rounded uppercase shadow-md">VIP Access</div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h3 class="text-xl font-bold text-seadark mb-2">Vé YES Night</h3>
+                            <p class="text-gray-600 text-sm flex-1 leading-relaxed">Cơ hội bốc thăm tham gia đêm nhạc Private đẳng cấp quy mô 3000 khách cùng thần tượng Mỹ Tâm.</p>
+                            <a href="#register" class="mt-4 text-seared font-semibold text-sm hover:underline">Tìm hiểu thể lệ <i class="fa-solid fa-angle-right ml-1"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Reward 3 -->
+                    <div class="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-all flex flex-col overflow-hidden group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://placehold.co/600x400/FEF3C7/D97706?text=YES+Day+E-Voucher" alt="E-Voucher" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded uppercase shadow-md">Thứ 7 Hàng Tuần</div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h3 class="text-xl font-bold text-seadark mb-2">E-Voucher YES Day</h3>
+                            <p class="text-gray-600 text-sm flex-1 leading-relaxed">Nhận ngay Voucher mua sắm trị giá từ 50K tới 200K khi đăng ký dịch vụ và phát sinh giao dịch vào mỗi thứ 7.</p>
+                            <a href="#register" class="mt-4 text-seared font-semibold text-sm hover:underline">Xem chi tiết ưu đãi <i class="fa-solid fa-angle-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="csr" class="py-16 bg-sealight">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-seadark rounded-2xl flex flex-col md:flex-row overflow-hidden shadow-xl">
+                    <div class="md:w-1/2 relative min-h-[300px]">
+                        <img src="https://placehold.co/800x600/10B981/FFFFFF?text=Say+Yes+to+Green+Campaign" alt="Say Yes to Green" class="absolute inset-0 w-full h-full object-cover">
+                        <!-- Lớp phủ tối mờ để text nổi bật nếu ảnh quá sáng -->
+                        <div class="absolute inset-0 bg-black/20"></div>
+                    </div>
+                    <div class="md:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
+                        <div class="inline-flex items-center space-x-2 bg-green-500/20 text-green-400 w-max px-3 py-1 rounded-full text-sm font-bold tracking-wide mb-4">
+                            <i class="fa-solid fa-leaf"></i>
+                            <span>DỰ ÁN CSR BỀN VỮNG</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-4">Say Yes to Green 🌿</h3>
+                        <p class="text-gray-300 text-lg leading-relaxed mb-8">Mỗi tài khoản mở mới hoặc thẻ SeASoul được phát hành, SeABank sẽ đóng góp vào quỹ trồng rừng bền vững và Ocean Clean Up. Hãy cùng Đại sứ Mỹ Tâm lan tỏa màu xanh.</p>
+                        
+                        <div class="flex items-center space-x-6 border-t border-gray-700 pt-6">
+                            <div>
+                                <div class="text-4xl md:text-5xl font-black text-white font-mono" id="tree-counter">12,450</div>
+                                <div class="text-xs uppercase tracking-wider text-green-400 font-semibold mt-1">Cây xanh đã được trồng</div>
+                            </div>
+                            <div class="h-12 w-px bg-gray-700"></div>
+                            <div>
+                                <div class="text-4xl md:text-5xl font-black text-white font-mono">15.6</div>
+                                <div class="text-xs uppercase tracking-wider text-blue-400 font-semibold mt-1">Tấn rác được thu gom</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="register" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Activation Booth Banner -->
+                <div class="mb-12 rounded-2xl overflow-hidden shadow-md relative group cursor-pointer">
+                    <img src="https://placehold.co/1200x300/E3001B/FFFFFF?text=Activation+Booth+Hanoi+%26+HCM" alt="Activation Booth" class="w-full h-[200px] md:h-[250px] object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-r from-seadark/80 to-seadark/40 flex flex-col justify-center p-8 md:p-12">
+                        <h3 class="text-2xl md:text-4xl font-bold text-white mb-2">Trải nghiệm trực tiếp tại Activation Booth</h3>
+                        <p class="text-gray-200 text-lg max-w-xl">Ghé thăm gian hàng tại Hà Nội & TP. Hồ Chí Minh. Mở thẻ siêu nhanh - Nhận voucher trà sữa, siêu thị liền tay!</p>
+                    </div>
+                </div>
+
+                <!-- Form Layout -->
+                <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col md:flex-row">
+                    <!-- Left Info -->
+                    <div class="md:w-2/5 bg-sealight p-8 lg:p-12 border-r border-gray-200 flex flex-col justify-center">
+                        <h2 class="text-3xl font-bold text-seadark mb-4">Sẵn sàng SAY YES!</h2>
+                        <p class="text-gray-600 mb-8 leading-relaxed">Để lại thông tin, chuyên viên tài chính của SeABank sẽ liên hệ trực tiếp để thiết kế lộ trình "Say Yes" phù hợp nhất dành riêng cho bạn.</p>
+                        
+                        <div class="space-y-5">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center text-seared flex-shrink-0">
+                                    <i class="fa-solid fa-headset"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-seadark">Tư vấn miễn phí</h4>
+                                    <p class="text-sm text-gray-500">Hỗ trợ 24/7, quy trình nhanh gọn.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center text-seared flex-shrink-0">
+                                    <i class="fa-solid fa-gift"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-seadark">Nhận ưu đãi độc quyền</h4>
+                                    <p class="text-sm text-gray-500">Cơ hội nhận Gift Box Mỹ Tâm & Voucher.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center text-seared flex-shrink-0">
+                                    <i class="fa-solid fa-lock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-seadark">Bảo mật tuyệt đối</h4>
+                                    <p class="text-sm text-gray-500">Dữ liệu của bạn được mã hóa an toàn.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Form -->
+                    <div class="md:w-3/5 p-8 lg:p-12">
+                        <form id="campaignForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Họ và tên <span class="text-seared">*</span></label>
+                                    <input type="text" id="form-name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-seared focus:border-seared outline-none transition-colors" placeholder="Nguyễn Văn A">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Số điện thoại <span class="text-seared">*</span></label>
+                                    <input type="tel" id="form-phone" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-seared focus:border-seared outline-none transition-colors" placeholder="090x xxx xxx">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Bạn muốn SAY YES! với dịch vụ nào? <span class="text-seared">*</span></label>
+                                <div class="relative">
+                                    <select id="form-service" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-seared focus:border-seared outline-none transition-colors appearance-none bg-white">
+                                        <option value="" disabled selected>-- Chọn dịch vụ quan tâm --</option>
+                                        <option value="the-tin-dung">Thẻ tín dụng (Hoàn tiền, trả góp)</option>
+                                        <option value="ngan-hang-so">Ngân hàng số SeAMobile</option>
+                                        <option value="tiet-kiem">Gửi tiết kiệm & Tích lũy</option>
+                                        <option value="vay-von">Vay vốn (Mua nhà, mua xe...)</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                        <i class="fa-solid fa-chevron-down text-sm"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-2">
+                                <button type="submit" class="w-full bg-seared text-white py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors shadow-md flex justify-center items-center gap-2">
+                                    GỬI YÊU CẦU TƯ VẤN <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                                <p class="text-center text-xs text-gray-500 mt-4">Bằng việc đăng ký, bạn đồng ý với <a href="#" class="text-seared hover:underline">điều khoản bảo mật</a> của SeABank.</p>
+                            </div>
+                        </form>
+
+                        <!-- Success Message (Hidden by default) -->
+                        <div id="success-msg" class="hidden h-full flex-col items-center justify-center text-center space-y-4 py-10">
+                            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-4xl mb-2">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-seadark">Đăng ký thành công!</h3>
+                            <p class="text-gray-600 max-w-md">Cảm ơn bạn đã quan tâm đến chiến dịch SAY YES! Chuyên viên tài chính của SeABank sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
+                            <button onclick="resetForm()" class="mt-6 border border-gray-300 text-gray-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
+                                Gửi đăng ký khác
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-seadark text-white pt-16 pb-8 border-t-4 border-seared">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-white rounded flex items-center justify-center text-seared font-bold text-2xl">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                        <span class="text-2xl font-extrabold tracking-tight">SeABank</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Ngân hàng TMCP Đông Nam Á (SeABank)<br>
+                        Kết nối giá trị cuộc sống - Nâng tầm hành trình.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6 border-b border-gray-700 pb-2">Chiến dịch SAY YES!</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Thể lệ chương trình Gift Box</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Thông tin đêm nhạc YES Night</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sự kiện YES Day hàng tuần</a></li>
+                        <li><a href="#csr" class="hover:text-white transition-colors">Hoạt động CSR: Say Yes to Green</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6 border-b border-gray-700 pb-2">Liên hệ</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-phone"></i> Hotline: 1900 555 587</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-envelope"></i> Email: contact@seabank.com.vn</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-globe"></i> Website: seabank.com.vn</li>
+                        <li class="flex items-center gap-3 mt-4">
+                            <a href="#" class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-blue-600 transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-red-600 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="#" class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-black transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-xs">© 2026 Ngân hàng TMCP Đông Nam Á. Mọi quyền được bảo lưu.</p>
+                <div class="mt-4 md:mt-0 space-x-4">
+                    <a href="#" class="text-xs text-gray-500 hover:text-white">Chính sách bảo mật</a>
+                    <a href="#" class="text-xs text-gray-500 hover:text-white">Điều khoản sử dụng</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Store cho phần Giải pháp
+        const solutions = [
+            {
+                title: "Thẻ tín dụng SeABank",
+                desc: "Say Yes với các trải nghiệm bạn xứng đáng. Tận hưởng hoàn tiền lên đến 10% cho mọi chi tiêu mua sắm, du lịch và ẩm thực.",
+                features: ["Miễn phí thường niên năm đầu", "Trả góp 0% lãi suất tại hàng ngàn đối tác", "Hoàn tiền không giới hạn"],
+                chartData: [85, 95, 90, 70] // Lợi ích, Trải nghiệm, Linh hoạt, Chi phí
+            },
+            {
+                title: "Ngân hàng số SeAMobile",
+                desc: "Say Yes với cuộc sống hiện đại ngay trên lòng bàn tay. Quản lý tài chính cá nhân thông minh và thanh toán mọi hóa đơn chỉ với một chạm.",
+                features: ["Chuyển tiền 24/7 hoàn toàn miễn phí", "Thanh toán QR Code tại mọi cửa hàng", "Theo dõi sức khỏe tài chính cá nhân"],
+                chartData: [95, 85, 90, 95] 
+            },
+            {
+                title: "Tiết kiệm & Tích lũy",
+                desc: "Say Yes với một tương lai vững chắc. Lãi suất cạnh tranh vượt trội giúp kế hoạch của bạn về đích sớm hơn mong đợi.",
+                features: ["Lãi suất ưu đãi bậc thang hấp dẫn", "Gửi tiền online an toàn, nhanh chóng", "Rút vốn linh hoạt khi cần thiết"],
+                chartData: [75, 95, 80, 85] 
+            },
+            {
+                title: "Vay vốn linh hoạt",
+                desc: "Say Yes với những dự định lớn lao. Chúng tôi hỗ trợ nguồn vốn kịp thời cho ngôi nhà mơ ước hay chiếc xe bạn hằng mong.",
+                features: ["Thủ tục phê duyệt nhanh gọn trong 24h", "Thời gian vay linh hoạt lên đến 25 năm", "Lãi suất ưu đãi cố định năm đầu"],
+                chartData: [90, 80, 85, 75] 
+            }
+        ];
+
+        let solutionChart;
+
+        // Hàm cập nhật chi tiết Giải pháp và Biểu đồ
+        function updateSolution(index) {
+            const sol = solutions[index];
+            document.getElementById('sol-title').innerText = sol.title;
+            document.getElementById('sol-desc').innerText = sol.desc;
+            
+            // Cập nhật danh sách tính năng
+            const featureList = document.getElementById('sol-features');
+            featureList.innerHTML = sol.features.map(f => `
+                <li class="flex items-start gap-3">
+                    <div class="mt-1 w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-check text-xs"></i></div>
+                    <span class="text-gray-700 font-medium">${f}</span>
+                </li>
+            `).join('');
+
+            // Cập nhật trạng thái Tab
+            document.querySelectorAll('.sol-tab').forEach((tab, i) => {
+                if(i === index) {
+                    tab.classList.add('active', 'text-seared', 'bg-red-50');
+                    tab.classList.remove('text-gray-600');
+                } else {
+                    tab.classList.remove('active', 'text-seared', 'bg-red-50');
+                    tab.classList.add('text-gray-600');
+                }
+            });
+
+            // Vẽ lại biểu đồ Radar
+            const ctx = document.getElementById('solutionChart').getContext('2d');
+            if(solutionChart) solutionChart.destroy();
+
+            // Cấu hình font cho chart đồng bộ với font chữ web
+            Chart.defaults.font.family = "'Inter', sans-serif";
+
+            solutionChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Lợi ích/Hoàn tiền', 'Trải nghiệm số', 'Linh hoạt', 'Tiết kiệm/Chi phí'],
+                    datasets: [{
+                        label: 'Đánh giá chỉ số',
+                        data: sol.chartData,
+                        backgroundColor: 'rgba(227, 0, 27, 0.2)', // seared opacity
+                        borderColor: '#E3001B', // seared
+                        borderWidth: 2,
+                        pointBackgroundColor: '#E3001B',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#E3001B'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#111827',
+                            padding: 10,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        r: { 
+                            beginAtZero: true, 
+                            max: 100, 
+                            ticks: { display: false, stepSize: 20 },
+                            pointLabels: { font: { size: 11, weight: '600' }, color: '#4B5563' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Xử lý Form Submit (Mô phỏng API)
+        document.getElementById('campaignForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+            
+            // Trạng thái Loading
+            btn.innerHTML = 'ĐANG XỬ LÝ... <i class="fa-solid fa-spinner fa-spin"></i>';
+            btn.disabled = true;
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+
+            // Giả lập call API mất 1.5s
+            setTimeout(() => {
+                this.classList.add('hidden');
+                document.getElementById('success-msg').classList.remove('hidden');
+                document.getElementById('success-msg').classList.add('flex');
+                
+                // Trả lại trạng thái cho nút (cho lần đăng ký sau)
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+                btn.classList.remove('opacity-80', 'cursor-not-allowed');
+            }, 1500);
+        });
+
+        // Nút Gửi lại form
+        function resetForm() {
+            document.getElementById('success-msg').classList.add('hidden');
+            document.getElementById('success-msg').classList.remove('flex');
+            const form = document.getElementById('campaignForm');
+            form.classList.remove('hidden');
+            form.reset(); // Xóa dữ liệu cũ
+        }
+
+        // Hiệu ứng đếm số cho cây xanh CSR
+        function animateCounter() {
+            const el = document.getElementById('tree-counter');
+            let count = 12450;
+            // Tăng số ngẫu nhiên mỗi 3-6 giây
+            setInterval(() => {
+                count += Math.floor(Math.random() * 3) + 1;
+                el.innerText = count.toLocaleString();
+            }, Math.random() * 3000 + 3000);
+        }
+
+        // Khởi tạo các hàm khi tải trang
+        window.onload = () => {
+            updateSolution(0); // Mở Tab Thẻ tín dụng mặc định
+            animateCounter();
+        };
+    </script>
+</body>
+</html>
