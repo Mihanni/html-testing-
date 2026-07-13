@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAY YES! Campaign - SeABank x Mỹ Tâm</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Cấu hình màu sắc chuẩn thương hiệu SeABank -->
     <script>
         tailwind.config = {
@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
+
         body {
             font-family: 'Inter', sans-serif;
             color: #111827;
@@ -44,7 +44,7 @@
 
         /* Bù trừ khoảng cách khi cuộn do header cố định */
         section {
-            scroll-margin-top: 5rem; 
+            scroll-margin-top: 5rem;
         }
 
         .chart-container {
@@ -58,24 +58,70 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1; 
+            background: #f1f1f1;
         }
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
+            background: #cbd5e1;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
+            background: #94a3b8;
         }
-        
+
         /* Hiệu ứng active cho Tab Giải pháp */
         .sol-tab.active {
             border-color: #E3001B;
             color: #E3001B;
             background-color: #FEF2F2;
         }
+
+        /* ===== Minigame: YES Challenge ===== */
+        @keyframes floatBubble1 {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        @keyframes floatBubble2 {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(10px); }
+        }
+        @keyframes floatBubble3 {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        .animate-float1 { animation: floatBubble1 4s ease-in-out infinite; }
+        .animate-float2 { animation: floatBubble2 5s ease-in-out infinite; }
+        .animate-float3 { animation: floatBubble3 4.5s ease-in-out infinite; }
+
+        #game-card {
+            transition: transform 0.15s ease-out;
+        }
+        #slot-1, #slot-2 {
+            transition: transform 0.1s ease-out, background-color 0.2s, color 0.2s;
+        }
+        #slot-1.scale-95, #slot-2.scale-95 {
+            transform: scale(0.95);
+        }
+        .role-yes {
+            background-color: #ffffff;
+            color: #E3001B;
+        }
+        .role-no {
+            background-color: rgba(0,0,0,0.25);
+            color: rgba(255,255,255,0.6);
+        }
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+        .animate-wrong-shake {
+            animation: wrongShake 0.22s ease-in-out;
+        }
+        #game-skyline {
+            clip-path: polygon(0% 100%, 0% 60%, 8% 60%, 8% 40%, 16% 40%, 16% 70%, 24% 70%, 24% 30%, 32% 30%, 32% 55%, 40% 55%, 40% 20%, 48% 20%, 48% 65%, 56% 65%, 56% 35%, 64% 35%, 64% 50%, 72% 50%, 72% 25%, 80% 25%, 80% 60%, 88% 60%, 88% 40%, 96% 40%, 96% 100%);
+        }
     </style>
-    
+
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -90,15 +136,16 @@
                 </div>
                 <span class="text-2xl font-extrabold text-seared tracking-tight">SeABank</span>
             </div>
-            
+
             <!-- Navigation Links -->
             <nav class="hidden md:flex space-x-8">
                 <a href="#overview" class="text-gray-600 font-medium hover:text-seared transition-colors">Tổng quan</a>
                 <a href="#solutions" class="text-gray-600 font-medium hover:text-seared transition-colors">Giải pháp</a>
                 <a href="#rewards" class="text-gray-600 font-medium hover:text-seared transition-colors">Đặc quyền</a>
+                <a href="#minigame" class="text-gray-600 font-medium hover:text-seared transition-colors">Minigame</a>
                 <a href="#csr" class="text-gray-600 font-medium hover:text-seared transition-colors">Cộng đồng</a>
             </nav>
-            
+
             <!-- CTA Button -->
             <a href="#register" class="bg-seared text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-red-700 transition-colors shadow-sm text-sm">
                 Đăng ký tư vấn
@@ -131,7 +178,7 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     <!-- Key Visual Image -->
                     <div class="lg:w-1/2 relative w-full">
                         <div class="absolute -inset-4 bg-gradient-to-r from-red-100 to-transparent rounded-2xl transform -skew-y-3 z-0"></div>
@@ -158,7 +205,7 @@
                         <h3 class="text-xl font-bold text-seadark mb-3">Dám Thử</h3>
                         <p class="text-gray-600 leading-relaxed">Thử sức với những lĩnh vực mới, những trải nghiệm mà bạn hằng mong ước ngay từ bây giờ mà không cần chần chừ.</p>
                     </div>
-                    
+
                     <!-- Card 2 -->
                     <div class="bg-white border border-gray-100 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
                         <div class="absolute top-0 left-0 w-full h-1 bg-seared transform scale-x-100 transition-transform origin-left"></div>
@@ -193,7 +240,7 @@
 
                 <!-- Tabs & Content -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-2 md:p-6 flex flex-col lg:flex-row gap-8">
-                    
+
                     <!-- Left: Navigation Tabs -->
                     <div class="lg:w-1/3 flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 scrollbar-hide border-b lg:border-b-0 lg:border-r border-gray-100 pr-0 lg:pr-6">
                         <button onclick="updateSolution(0)" class="sol-tab active w-full text-left px-5 py-4 rounded-xl border border-transparent font-semibold transition-all whitespace-nowrap lg:whitespace-normal flex items-center gap-3">
@@ -299,6 +346,113 @@
             </div>
         </section>
 
+        <!-- ===================== MINIGAME: YES CHALLENGE (Teaser) ===================== -->
+        <section id="minigame" class="py-20 bg-gradient-to-b from-seadark via-black to-seadark text-white relative overflow-hidden">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <div class="inline-flex items-center gap-2 bg-seared/20 text-red-400 px-3 py-1 rounded-full text-sm font-bold tracking-wide mb-4">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>MINIGAME TƯƠNG TÁC TRÊN LANDING PAGE</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold">Trở thành <span class="text-seared">Yes Man</span> trong 60 giây</h2>
+                <p class="mt-4 text-gray-300 max-w-2xl mx-auto">Bấm <span class="font-bold text-white">YES</span> đúng vị trí, càng nhanh càng tốt để trả lời càng nhiều câu hỏi càng tốt. Trả lời càng nhiều, giá trị quà tặng càng tăng!</p>
+
+                <!-- CTA card mở minigame toàn màn hình -->
+                <div class="mt-10 max-w-xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-8 sm:p-10 backdrop-blur">
+                    <div class="w-16 h-16 rounded-2xl bg-seared/20 flex items-center justify-center mx-auto mb-5">
+                        <i class="fa-solid fa-mobile-screen-button text-3xl text-seared"></i>
+                    </div>
+                    <button onclick="openMinigame()" class="bg-seared text-white font-bold text-lg px-10 py-4 rounded-full shadow-lg hover:bg-red-700 hover:scale-105 transition-all inline-flex items-center gap-2">
+                        <i class="fa-solid fa-bolt"></i> CHƠI MINIGAME NGAY
+                    </button>
+
+                    <div class="grid grid-cols-3 gap-3 mt-8 text-xs sm:text-sm">
+                        <div class="bg-white/5 rounded-xl p-3">
+                            <div class="font-bold text-white">30 YES</div>
+                            <div class="text-seared font-semibold mt-1">50K</div>
+                        </div>
+                        <div class="bg-white/5 rounded-xl p-3">
+                            <div class="font-bold text-white">40 YES</div>
+                            <div class="text-seared font-semibold mt-1">100K</div>
+                        </div>
+                        <div class="bg-white/5 rounded-xl p-3">
+                            <div class="font-bold text-white">50 YES</div>
+                            <div class="text-seared font-semibold mt-1">200K</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =================== END MINIGAME: YES CHALLENGE (Teaser) =================== -->
+
+        <!-- ===================== MINIGAME: FULLSCREEN POPUP ===================== -->
+        <div id="minigame-modal" class="hidden fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm items-center justify-center p-0 sm:p-6" onclick="handleBackdropClick(event)">
+            <div class="relative w-full h-full sm:h-[88vh] sm:max-w-3xl sm:rounded-3xl bg-gradient-to-b from-red-800 via-seared to-red-950 overflow-hidden text-white flex flex-col">
+
+                <!-- Close button -->
+                <button onclick="closeMinigame()" aria-label="Đóng minigame" class="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 flex items-center justify-center text-white text-lg transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <!-- Decorative skyline -->
+                <div id="game-skyline" class="absolute bottom-0 left-0 w-full h-20 bg-black/25 pointer-events-none"></div>
+
+                <!-- Floating bubbles (decorative, desktop only) -->
+                <div class="hidden lg:block absolute top-20 left-6 bg-white text-seadark text-sm font-semibold px-4 py-2 rounded-2xl rounded-br-sm shadow-lg animate-float1 max-w-[150px] z-0 pointer-events-none">Hoàn tiền x2 không?</div>
+                <div class="hidden lg:block absolute bottom-24 left-10 bg-white text-seadark text-sm font-semibold px-4 py-2 rounded-2xl rounded-br-sm shadow-lg animate-float3 max-w-[140px] z-0 pointer-events-none">Đi du lịch không?</div>
+                <div class="hidden lg:block absolute top-20 right-6 bg-white text-seadark text-sm font-semibold px-4 py-2 rounded-2xl rounded-bl-sm shadow-lg animate-float2 max-w-[140px] z-0 pointer-events-none">Mua vàng không?</div>
+                <div class="hidden lg:block absolute bottom-24 right-10 bg-white text-seadark text-sm font-semibold px-4 py-2 rounded-2xl rounded-bl-sm shadow-lg animate-float1 max-w-[150px] z-0 pointer-events-none">Nhận voucher không?</div>
+
+                <!-- Timer -->
+                <div class="text-center pt-9 pb-2 relative z-10 shrink-0">
+                    <div class="text-[11px] uppercase tracking-widest text-red-200 font-semibold">Time left</div>
+                    <div id="game-timer" class="text-5xl font-black text-white mt-1">60s</div>
+                </div>
+
+                <!-- Score badge -->
+                <div class="absolute top-5 left-5 z-30 bg-white text-seared font-black text-base w-14 h-14 rounded-full flex flex-col items-center justify-center shadow-lg border-4 border-red-100 leading-none">
+                    <span id="game-score">0</span>
+                    <span class="text-[8px] font-bold text-gray-400 uppercase">Yes</span>
+                </div>
+
+                <!-- Vùng chơi: câu hỏi + nút YES/NO trải toàn bộ popup, vị trí nút random mỗi vòng -->
+                <div id="game-play-area" class="relative flex-1">
+
+                    <!-- Question card (cố định phía trên, canh giữa) -->
+                    <div id="game-card" class="absolute top-4 left-1/2 -translate-x-1/2 bg-white rounded-2xl p-5 w-[86%] max-w-sm shadow-xl text-center z-10">
+                        <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wide mb-2">Say Yes với...</div>
+                        <div id="game-question" class="text-lg font-bold text-seadark leading-snug min-h-[3.5rem] flex items-center justify-center">
+                            Mở tài khoản nhận quà không?
+                        </div>
+                    </div>
+
+                    <!-- Nút YES/NO: vị trí ngẫu nhiên trên toàn vùng chơi, đổi mỗi vòng -->
+                    <button id="slot-1" data-role="yes" onclick="handleSlotClick(1)" class="absolute w-36 h-16 font-black text-xl rounded-xl shadow-lg active:scale-95 z-20">YES</button>
+                    <button id="slot-2" data-role="no" onclick="handleSlotClick(2)" class="absolute w-36 h-16 font-bold text-base rounded-xl shadow-inner active:scale-95 border border-white/10 z-20">NO</button>
+
+                    <!-- Start overlay -->
+                    <div id="game-start-overlay" class="absolute inset-0 bg-black/75 flex flex-col items-center justify-center text-center p-6 z-40">
+                        <i class="fa-solid fa-bolt text-4xl text-yellow-400 mb-4"></i>
+                        <h4 class="text-xl font-bold text-white mb-2">Sẵn sàng Say Yes?</h4>
+                        <p class="text-gray-300 text-sm mb-6 max-w-xs">Nút YES sẽ xuất hiện ngẫu nhiên khắp màn hình, xen kẽ với nút NO. Bấm đúng YES càng nhanh, càng nhiều câu hỏi, quà càng lớn!</p>
+                        <button onclick="startGame()" class="bg-seared text-white font-bold px-8 py-3 rounded-full shadow-lg hover:bg-red-700 hover:scale-105 transition-all">BẮT ĐẦU</button>
+                    </div>
+
+                    <!-- Result overlay -->
+                    <div id="game-result-overlay" class="hidden absolute inset-0 bg-black/85 flex flex-col items-center justify-center text-center p-6 z-40">
+                        <div id="result-icon" class="text-5xl mb-3">🎉</div>
+                        <h4 class="text-xl font-bold text-white mb-1">Hoàn thành!</h4>
+                        <p class="text-gray-300 text-sm mb-3">Bạn đã nói YES <span id="result-count" class="text-white font-bold">0</span> lần</p>
+                        <div id="result-voucher" class="bg-white text-seared font-black text-base px-6 py-3 rounded-xl shadow-lg"></div>
+                        <div class="flex gap-3 mt-6">
+                            <button onclick="startGame()" class="border border-white text-white font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-white/10 transition-colors">Chơi lại</button>
+                            <a href="#register" onclick="closeMinigame()" class="bg-seared text-white font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-red-700 transition-colors">Nhận quà ngay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- =================== END MINIGAME: FULLSCREEN POPUP =================== -->
+
         <section id="csr" class="py-16 bg-sealight">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="bg-seadark rounded-2xl flex flex-col md:flex-row overflow-hidden shadow-xl">
@@ -314,7 +468,7 @@
                         </div>
                         <h3 class="text-3xl font-bold text-white mb-4">Say Yes to Green 🌿</h3>
                         <p class="text-gray-300 text-lg leading-relaxed mb-8">Mỗi tài khoản mở mới hoặc thẻ SeASoul được phát hành, SeABank sẽ đóng góp vào quỹ trồng rừng bền vững và Ocean Clean Up. Hãy cùng Đại sứ Mỹ Tâm lan tỏa màu xanh.</p>
-                        
+
                         <div class="flex items-center space-x-6 border-t border-gray-700 pt-6">
                             <div>
                                 <div class="text-4xl md:text-5xl font-black text-white font-mono" id="tree-counter">12,450</div>
@@ -348,7 +502,7 @@
                     <div class="md:w-2/5 bg-sealight p-8 lg:p-12 border-r border-gray-200 flex flex-col justify-center">
                         <h2 class="text-3xl font-bold text-seadark mb-4">Sẵn sàng SAY YES!</h2>
                         <p class="text-gray-600 mb-8 leading-relaxed">Để lại thông tin, chuyên viên tài chính của SeABank sẽ liên hệ trực tiếp để thiết kế lộ trình "Say Yes" phù hợp nhất dành riêng cho bạn.</p>
-                        
+
                         <div class="space-y-5">
                             <div class="flex items-start gap-4">
                                 <div class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center text-seared flex-shrink-0">
@@ -379,7 +533,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Right Form -->
                     <div class="md:w-3/5 p-8 lg:p-12">
                         <form id="campaignForm" class="space-y-6">
@@ -393,7 +547,7 @@
                                     <input type="tel" id="form-phone" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-seared focus:border-seared outline-none transition-colors" placeholder="090x xxx xxx">
                                 </div>
                             </div>
-                            
+
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-2">Bạn muốn SAY YES! với dịch vụ nào? <span class="text-seared">*</span></label>
                                 <div class="relative">
@@ -409,7 +563,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="pt-2">
                                 <button type="submit" class="w-full bg-seared text-white py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors shadow-md flex justify-center items-center gap-2">
                                     GỬI YÊU CẦU TƯ VẤN <i class="fa-solid fa-paper-plane"></i>
@@ -456,6 +610,7 @@
                         <li><a href="#" class="hover:text-white transition-colors">Thể lệ chương trình Gift Box</a></li>
                         <li><a href="#" class="hover:text-white transition-colors">Thông tin đêm nhạc YES Night</a></li>
                         <li><a href="#" class="hover:text-white transition-colors">Sự kiện YES Day hàng tuần</a></li>
+                        <li><a href="#minigame" class="hover:text-white transition-colors">Minigame YES Challenge</a></li>
                         <li><a href="#csr" class="hover:text-white transition-colors">Hoạt động CSR: Say Yes to Green</a></li>
                     </ul>
                 </div>
@@ -496,19 +651,19 @@
                 title: "Ngân hàng số SeAMobile",
                 desc: "Say Yes với cuộc sống hiện đại ngay trên lòng bàn tay. Quản lý tài chính cá nhân thông minh và thanh toán mọi hóa đơn chỉ với một chạm.",
                 features: ["Chuyển tiền 24/7 hoàn toàn miễn phí", "Thanh toán QR Code tại mọi cửa hàng", "Theo dõi sức khỏe tài chính cá nhân"],
-                chartData: [95, 85, 90, 95] 
+                chartData: [95, 85, 90, 95]
             },
             {
                 title: "Tiết kiệm & Tích lũy",
                 desc: "Say Yes với một tương lai vững chắc. Lãi suất cạnh tranh vượt trội giúp kế hoạch của bạn về đích sớm hơn mong đợi.",
                 features: ["Lãi suất ưu đãi bậc thang hấp dẫn", "Gửi tiền online an toàn, nhanh chóng", "Rút vốn linh hoạt khi cần thiết"],
-                chartData: [75, 95, 80, 85] 
+                chartData: [75, 95, 80, 85]
             },
             {
                 title: "Vay vốn linh hoạt",
                 desc: "Say Yes với những dự định lớn lao. Chúng tôi hỗ trợ nguồn vốn kịp thời cho ngôi nhà mơ ước hay chiếc xe bạn hằng mong.",
                 features: ["Thủ tục phê duyệt nhanh gọn trong 24h", "Thời gian vay linh hoạt lên đến 25 năm", "Lãi suất ưu đãi cố định năm đầu"],
-                chartData: [90, 80, 85, 75] 
+                chartData: [90, 80, 85, 75]
             }
         ];
 
@@ -519,7 +674,7 @@
             const sol = solutions[index];
             document.getElementById('sol-title').innerText = sol.title;
             document.getElementById('sol-desc').innerText = sol.desc;
-            
+
             // Cập nhật danh sách tính năng
             const featureList = document.getElementById('sol-features');
             featureList.innerHTML = sol.features.map(f => `
@@ -566,7 +721,7 @@
                 options: {
                     maintainAspectRatio: false,
                     responsive: true,
-                    plugins: { 
+                    plugins: {
                         legend: { display: false },
                         tooltip: {
                             backgroundColor: '#111827',
@@ -575,9 +730,9 @@
                         }
                     },
                     scales: {
-                        r: { 
-                            beginAtZero: true, 
-                            max: 100, 
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
                             ticks: { display: false, stepSize: 20 },
                             pointLabels: { font: { size: 11, weight: '600' }, color: '#4B5563' }
                         }
@@ -591,7 +746,7 @@
             e.preventDefault();
             const btn = this.querySelector('button[type="submit"]');
             const originalContent = btn.innerHTML;
-            
+
             // Trạng thái Loading
             btn.innerHTML = 'ĐANG XỬ LÝ... <i class="fa-solid fa-spinner fa-spin"></i>';
             btn.disabled = true;
@@ -602,7 +757,7 @@
                 this.classList.add('hidden');
                 document.getElementById('success-msg').classList.remove('hidden');
                 document.getElementById('success-msg').classList.add('flex');
-                
+
                 // Trả lại trạng thái cho nút (cho lần đăng ký sau)
                 btn.innerHTML = originalContent;
                 btn.disabled = false;
@@ -628,6 +783,245 @@
                 count += Math.floor(Math.random() * 3) + 1;
                 el.innerText = count.toLocaleString();
             }, Math.random() * 3000 + 3000);
+        }
+
+        // ============ MINIGAME: YES CHALLENGE ============
+        const gameQuestions = [
+            "Mở tài khoản nhận quà không?",
+            "Hoàn tiền x2 không?",
+            "Mở sổ tiết kiệm không?",
+            "Đi du lịch không?",
+            "Mua vàng không?",
+            "Uống trà sữa không?",
+            "Nhận voucher không?",
+            "Mở thẻ tín dụng SeABank không?",
+            "Vay vốn lãi suất tốt không?",
+            "Chuyển tiền miễn phí 24/7 không?",
+            "Say Yes với SeABank không?",
+            "Nhận Gift Box Mỹ Tâm không?",
+            "Săn vé YES Night không?",
+            "Trồng thêm cây xanh không?"
+        ];
+
+        // Mỗi vòng kéo dài ROUND_MS. Trong 60s sẽ có ~60000/ROUND_MS vòng,
+        // vì mỗi vòng chỉ tính được tối đa 1 lần YES nên đây chính là điểm tối đa có thể đạt.
+        // ROUND_MS = 900ms => tối đa ~66-67 lần YES trong 60 giây (nằm trong khoảng 60-70 theo yêu cầu).
+        const ROUND_MS = 900;
+
+        let gameTimeLeft = 60;
+        let gameScore = 0;
+        let gameInterval = null;
+        let roundTimer = null;
+        let gameActive = false;
+        let roundAnswered = false;
+        let lastQuestion = "";
+
+        // ============ MỞ / ĐÓNG POPUP MINIGAME ============
+        function openMinigame() {
+            const modal = document.getElementById('minigame-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // khoá cuộn trang nền
+
+            // Đưa UI về trạng thái "Sẵn sàng chơi" mỗi lần mở popup
+            gameActive = false;
+            if (gameInterval) clearInterval(gameInterval);
+            if (roundTimer) clearInterval(roundTimer);
+            gameScore = 0;
+            gameTimeLeft = 60;
+            document.getElementById('game-score').innerText = 0;
+            document.getElementById('game-timer').innerText = '60s';
+            document.getElementById('game-result-overlay').classList.add('hidden');
+            document.getElementById('game-result-overlay').classList.remove('flex');
+            document.getElementById('game-start-overlay').classList.remove('hidden');
+
+            document.addEventListener('keydown', handleEscKey);
+        }
+
+        function closeMinigame() {
+            const modal = document.getElementById('minigame-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = ''; // mở lại cuộn trang nền
+
+            // Dừng game nếu đang chạy để không tính thời gian khi popup đã đóng
+            gameActive = false;
+            if (gameInterval) clearInterval(gameInterval);
+            if (roundTimer) clearInterval(roundTimer);
+
+            document.removeEventListener('keydown', handleEscKey);
+        }
+
+        // Bấm ra ngoài (lớp phủ đen) để đóng popup, không đóng khi bấm vào nội dung bên trong
+        function handleBackdropClick(event) {
+            if (event.target.id === 'minigame-modal') {
+                closeMinigame();
+            }
+        }
+
+        function handleEscKey(event) {
+            if (event.key === 'Escape') {
+                closeMinigame();
+            }
+        }
+
+        function startGame() {
+            gameScore = 0;
+            gameTimeLeft = 60;
+            gameActive = true;
+            lastQuestion = "";
+
+            document.getElementById('game-score').innerText = gameScore;
+            document.getElementById('game-timer').innerText = gameTimeLeft + 's';
+            document.getElementById('game-start-overlay').classList.add('hidden');
+            document.getElementById('game-result-overlay').classList.add('hidden');
+            document.getElementById('game-result-overlay').classList.remove('flex');
+
+            startRound(); // vòng đầu tiên chạy ngay
+
+            if (gameInterval) clearInterval(gameInterval);
+            gameInterval = setInterval(() => {
+                gameTimeLeft--;
+                document.getElementById('game-timer').innerText = gameTimeLeft + 's';
+                if (gameTimeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+
+            if (roundTimer) clearInterval(roundTimer);
+            // Tốc độ vòng CỐ ĐỊNH, không phụ thuộc người chơi bấm nhanh hay chậm
+            // -> đảm bảo tổng số lần YES tối đa trong 60s luôn bị giới hạn (~60-70 lần).
+            roundTimer = setInterval(startRound, ROUND_MS);
+        }
+
+        // Bắt đầu một vòng mới: đổi câu hỏi + đổi vị trí ngẫu nhiên của nút YES/NO
+        function startRound() {
+            if (!gameActive) return;
+            roundAnswered = false;
+
+            // Random hoá vai trò: đôi khi YES ở nút 1, đôi khi ở nút 2
+            const yesSlot = Math.random() < 0.5 ? 1 : 2;
+            renderSlot(1, yesSlot === 1 ? 'yes' : 'no');
+            renderSlot(2, yesSlot === 2 ? 'yes' : 'no');
+
+            // Random hoá vị trí hiển thị của cả 2 nút trên toàn bộ vùng chơi
+            positionButtonsRandomly();
+
+            nextQuestion();
+        }
+
+        // Gán vai trò YES/NO + style cho 1 nút
+        function renderSlot(slotNumber, role) {
+            const btn = document.getElementById('slot-' + slotNumber);
+            btn.dataset.role = role;
+            btn.classList.remove('role-yes', 'role-no', 'scale-95', 'animate-wrong-shake');
+            if (role === 'yes') {
+                btn.textContent = 'YES';
+                btn.classList.add('role-yes');
+            } else {
+                btn.textContent = 'NO';
+                btn.classList.add('role-no');
+            }
+        }
+
+        // Đặt 2 nút YES/NO ở vị trí ngẫu nhiên, không cố định, trong vùng chơi (game-play-area)
+        function positionButtonsRandomly() {
+            const area = document.getElementById('game-play-area');
+            const btn1 = document.getElementById('slot-1');
+            const btn2 = document.getElementById('slot-2');
+
+            const areaW = area.clientWidth;
+            const areaH = area.clientHeight;
+            const btnW = 144; // khớp với class w-36
+            const btnH = 64;  // khớp với class h-16
+            const padding = 16;
+            const topMin = 140; // chừa khoảng trống dưới câu hỏi để không bị che
+            const topMax = Math.max(topMin, areaH - btnH - padding);
+            const leftMax = Math.max(0, areaW - btnW - padding);
+
+            function randomPos() {
+                return {
+                    top: topMin + Math.random() * (topMax - topMin),
+                    left: padding + Math.random() * Math.max(leftMax - padding, 0)
+                };
+            }
+
+            let pos1 = randomPos();
+            let pos2 = randomPos();
+
+            // Thử tránh 2 nút chồng lên nhau quá nhiều
+            let attempts = 0;
+            while (Math.abs(pos1.left - pos2.left) < btnW && Math.abs(pos1.top - pos2.top) < btnH && attempts < 10) {
+                pos2 = randomPos();
+                attempts++;
+            }
+
+            btn1.style.top = pos1.top + 'px';
+            btn1.style.left = pos1.left + 'px';
+            btn2.style.top = pos2.top + 'px';
+            btn2.style.left = pos2.left + 'px';
+        }
+
+        function nextQuestion() {
+            let q = gameQuestions[Math.floor(Math.random() * gameQuestions.length)];
+            // Tránh lặp lại câu hỏi liền kề
+            let attempts = 0;
+            while (q === lastQuestion && attempts < 5) {
+                q = gameQuestions[Math.floor(Math.random() * gameQuestions.length)];
+                attempts++;
+            }
+            lastQuestion = q;
+
+            const el = document.getElementById('game-question');
+            el.innerText = q;
+
+            // Hiệu ứng "pop" nhẹ cho card câu hỏi
+            const card = document.getElementById('game-card');
+            card.style.transform = 'scale(0.92)';
+            card.style.opacity = '0.6';
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    card.style.transform = 'scale(1)';
+                    card.style.opacity = '1';
+                }, 20);
+            });
+        }
+
+        // Xử lý khi người chơi bấm vào 1 trong 2 nút (vị trí trên hoặc dưới)
+        function handleSlotClick(slotNumber) {
+            if (!gameActive || roundAnswered) return;
+            const btn = document.getElementById('slot-' + slotNumber);
+            const role = btn.dataset.role;
+
+            if (role === 'yes') {
+                roundAnswered = true;
+                gameScore++;
+                document.getElementById('game-score').innerText = gameScore;
+                btn.classList.add('scale-95');
+            } else {
+                // Bấm nhầm NO: không tính điểm, rung nhẹ để phản hồi, không khoá vòng
+                // (người chơi vẫn có thể bấm đúng YES ở vị trí còn lại trong vòng này)
+                btn.classList.add('animate-wrong-shake');
+                setTimeout(() => btn.classList.remove('animate-wrong-shake'), 220);
+            }
+        }
+
+        function endGame() {
+            gameActive = false;
+            clearInterval(gameInterval);
+            clearInterval(roundTimer);
+            document.getElementById('result-count').innerText = gameScore;
+
+            let voucher = "Chưa đạt mốc quà - Hãy chơi lại nhé!";
+            let icon = "💪";
+            if (gameScore >= 50) { voucher = "VOUCHER 200K"; icon = "🏆"; }
+            else if (gameScore >= 40) { voucher = "VOUCHER 100K"; icon = "🎉"; }
+            else if (gameScore >= 30) { voucher = "VOUCHER 50K"; icon = "🎁"; }
+
+            document.getElementById('result-icon').innerText = icon;
+            document.getElementById('result-voucher').innerText = voucher;
+            document.getElementById('game-result-overlay').classList.remove('hidden');
+            document.getElementById('game-result-overlay').classList.add('flex');
         }
 
         // Khởi tạo các hàm khi tải trang
