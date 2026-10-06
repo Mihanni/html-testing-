@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAY YES! - SeABank x Mỹ Tâm</title>
+<meta name="description" content="Chiến dịch SAY YES! cùng SeABank và Đại sứ Mỹ Tâm: Hãy tìm SAY YES, đặc quyền và minigame Yes Man 60 giây.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   SeABank Design System (Le Bros) — tokens
+   Nguồn: tokens.json của design system, 05/10/2026
+   ========================================================= */
+:root {
+  --sea-red: #d71920;
+  --sea-red-deep: #9e1e1f;
+  --sea-red-bright: #dd1a1c;
+  --red-text: #d71920;
+  --red-tint: #fbe8e9;
+  --on-red: #ffffff;
+  --ink: #1b1b1b;
+  --ink-strong: #000000;
+  --ink-muted: #4f4f4f;
+  --ink-subtle: #828282;
+  --surface: #ffffff;
+  --surface-alt: #f3f3f3;
+  --surface-raised: #ffffff;
+  --surface-inverse: #1b1b1b;
+  --border: #e0e0e0;
+  --border-control: #d71920;
+  --focus-ring: #9e1e1f;
+  --success: #2e7d4f;
+
+  --font-sans: "SVN-Gilroy", "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px;
+  --space-8: 32px; --space-12: 48px; --space-16: 64px; --space-24: 96px;
+
+  --radius-sm: 6px; --radius-md: 12px; --radius-lg: 16px; --radius-pill: 999px;
+
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-pop: 0 12px 32px rgba(158, 30, 31, 0.18);
+
+  --grad: linear-gradient(95deg, var(--sea-red), var(--sea-red-deep));
+  --container: 1200px;
+}
+
+/* ===== Base ===== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--surface); color: var(--ink);
+  font: 400 16px/24px var(--font-sans); -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+section[id] { scroll-margin-top: 72px; }
+:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+.icon { width: 20px; height: 20px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.icon--lg { width: 28px; height: 28px; }
+
+.container { width: 100%; max-width: calc(var(--container) + 2 * var(--space-6)); margin: 0 auto; padding: 0 var(--space-6); }
+@media (max-width: 640px) { .container { padding: 0 var(--space-4); } }
+.section { padding: var(--space-24) 0; }
+.section--alt { background: var(--surface-alt); }
+@media (max-width: 768px) { .section { padding: var(--space-16) 0; } }
+
+/* ===== Type ===== */
+.sb-overline { font: 700 12px/16px var(--font-sans); letter-spacing: .08em; text-transform: uppercase; color: var(--red-text); margin: 0; }
+.sb-h1 { font: 800 40px/48px var(--font-sans); letter-spacing: -.01em; margin: 0; color: var(--ink-strong); text-wrap: balance; }
+.sb-h2 { font: 700 28px/36px var(--font-sans); margin: 0; color: var(--ink-strong); text-wrap: balance; }
+.sb-h3 { font: 700 20px/28px var(--font-sans); margin: 0; color: var(--ink); }
+.sb-lead { font: 400 18px/28px var(--font-sans); color: var(--ink-muted); margin: 0; }
+.sb-body { font: 400 16px/24px var(--font-sans); color: var(--ink-muted); margin: 0; }
+.sb-small { font: 400 14px/20px var(--font-sans); color: var(--ink-muted); margin: 0; }
+.sb-caption { font: 400 12px/16px var(--font-sans); color: var(--ink-muted); margin: 0; }
+.sb-grad-text { background-image: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@media (min-width: 1024px) { .sb-h2 { font-size: 36px; line-height: 44px; } .sb-h1 { font-size: 48px; line-height: 56px; } }
+
+.sb-head { display: grid; gap: var(--space-3); max-width: 720px; margin-bottom: var(--space-12); }
+.sb-head--row { max-width: none; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-6); }
+.sb-head--row > div:first-child { display: grid; gap: var(--space-3); max-width: 720px; }
+
+/* ===== Buttons ===== */
+.sb-btn {
+  font: 600 16px/24px var(--font-sans); display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  padding: 12px 24px; border-radius: var(--radius-md); border: 1.5px solid transparent; cursor: pointer; text-decoration: none;
+  transition: background-color .15s, box-shadow .15s, transform .15s; white-space: nowrap;
+}
+.sb-btn--primary { background-color: var(--sea-red); background-image: var(--grad); color: var(--on-red); box-shadow: var(--shadow-pop); }
+.sb-btn--primary:hover { background-image: none; background-color: var(--sea-red-deep); }
+.sb-btn--secondary { background: var(--surface); color: var(--red-text); border-color: var(--border-control); }
+.sb-btn--secondary:hover { background: var(--red-tint); color: var(--sea-red-deep); }
+.sb-btn--white { background: #fff; color: var(--sea-red-deep); }
+.sb-btn--white:hover { background: var(--red-tint); }
+.sb-btn--ghost-light { background: transparent; color: #fff; border-color: rgba(255,255,255,.6); }
+.sb-btn--ghost-light:hover { background: rgba(255,255,255,.1); }
+.sb-btn--sm { font-size: 14px; line-height: 20px; padding: 8px 16px; }
+.sb-btn--lg { padding: 16px 32px; font-size: 17px; }
+.sb-btn--block { width: 100%; }
+.sb-link { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--red-text); font-weight: 600; text-decoration: none; }
+.sb-link .icon { width: 18px; height: 18px; transition: transform .15s; }
+.sb-link:hover .icon { transform: translateX(3px); }
+
+/* ===== Badges ===== */
+.sb-badge { display: inline-flex; align-items: center; gap: var(--space-1); font: 700 12px/16px var(--font-sans); letter-spacing: .06em; text-transform: uppercase; padding: 6px 10px; border-radius: var(--radius-sm); }
+.sb-badge--promo { background: var(--sea-red); color: var(--on-red); }
+.sb-badge--soft { background: var(--red-tint); color: var(--sea-red-deep); }
+.sb-badge--ink { background: var(--surface-inverse); color: #fff; }
+.sb-badge .icon { width: 14px; height: 14px; }
+
+/* ===== Header ===== */
+.header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--border); }
+.header__bar { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: var(--space-6); }
+/* Chưa có file logo gốc trong design system: dùng chữ thường, thay bằng logo chính thức khi có */
+.wordmark { font: 800 24px/1 var(--font-sans); color: var(--sea-red); letter-spacing: -.01em; text-decoration: none; display: inline-flex; align-items: baseline; gap: var(--space-2); }
+.wordmark small { font: 600 13px/1 var(--font-sans); color: var(--ink-muted); letter-spacing: 0; }
+.nav { display: flex; gap: var(--space-6); }
+.nav a { font: 500 15px/20px var(--font-sans); color: var(--ink-muted); text-decoration: none; padding: var(--space-2) 0; border-bottom: 2px solid transparent; }
+.nav a:hover, .nav a.is-active { color: var(--ink-strong); border-bottom-color: var(--sea-red); }
+.header__actions { display: flex; align-items: center; gap: var(--space-3); }
+.menu-btn { display: none; width: 44px; height: 44px; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--surface); align-items: center; justify-content: center; cursor: pointer; }
+.mobile-nav { display: none; border-top: 1px solid var(--border); padding: var(--space-2) 0 var(--space-4); }
+.mobile-nav a { display: block; padding: var(--space-3) 0; font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--border); }
+.mobile-nav.is-open { display: block; }
+@media (max-width: 1024px) {
+  .nav { display: none; }
+  .menu-btn { display: inline-flex; }
+}
+@media (max-width: 480px) { .header__cta { display: none; } }
+
+/* ===== Hero: Key Visual ===== */
+.hero { background: #5c0e12; }
+.hero__kv { position: relative; max-width: 1600px; margin: 0 auto; }
+.hero__kv img { width: 100%; height: auto; aspect-ratio: 1702 / 956; object-fit: cover; }
+.hero__panel-wrap { position: relative; margin-top: -72px; z-index: 2; }
+.hero__panel {
+  background: var(--surface-raised); border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
+  display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--space-8); padding: var(--space-8) var(--space-12); align-items: center;
+}
+.hero__copy { display: grid; gap: var(--space-3); }
+.hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-2); }
+.hero__facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); border-left: 1px solid var(--border); padding-left: var(--space-8); }
+.hero__fact { display: grid; gap: var(--space-1); }
+.hero__fact b { font: 800 24px/30px var(--font-sans); color: var(--ink-strong); letter-spacing: -.02em; }
+.hero__fact span { font: 400 14px/20px var(--font-sans); color: var(--ink-muted); }
+.hero-bottom { background: linear-gradient(180deg, #5c0e12 0, #5c0e12 72px, var(--surface) 72px); }
+@media (max-width: 960px) {
+  .hero__panel-wrap { margin-top: -32px; }
+  .hero-bottom { background: linear-gradient(180deg, #5c0e12 0, #5c0e12 32px, var(--surface) 32px); }
+  .hero__panel { grid-template-columns: 1fr; padding: var(--space-6); gap: var(--space-6); }
+  .hero__facts { border-left: 0; padding-left: 0; border-top: 1px solid var(--border); padding-top: var(--space-6); }
+}
+@media (max-width: 480px) {
+  .hero__facts { grid-template-columns: 1fr 1fr 1fr; gap: var(--space-2); }
+  .hero__fact b { font-size: 18px; line-height: 24px; }
+  .hero__fact span { font-size: 12px; line-height: 16px; }
+  .hero__ctas .sb-btn { flex: 1 1 100%; }
+  .sb-h1 { font-size: 34px; line-height: 42px; }
+}
+
+/* ===== Hãy tìm SAY YES ===== */
+.find-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+.step { background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-6); display: grid; gap: var(--space-3); align-content: start; transition: border-color .15s, box-shadow .15s; }
+.step:hover { border-color: var(--sea-red); box-shadow: var(--shadow-card); }
+.step__top { display: flex; align-items: center; justify-content: space-between; }
+.step__letter { width: 40px; height: 40px; border-radius: var(--radius-pill); background: var(--grad); color: var(--on-red); font: 800 18px/40px var(--font-sans); text-align: center; }
+.step__icon { width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--red-tint); color: var(--sea-red-deep); display: grid; place-items: center; }
+.step__icon .icon { width: 24px; height: 24px; }
+.equation { display: inline-flex; align-items: center; gap: var(--space-2); background: var(--surface-inverse); color: #fff; padding: 8px 16px; border-radius: var(--radius-pill); font: 600 14px/20px var(--font-sans); justify-self: start; }
+.equation b { color: #fff; }
+@media (max-width: 900px) { .find-steps { grid-template-columns: 1fr; } }
+
+/* Bảng đếm */
+.tracker { margin-top: var(--space-12); background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.tracker__grid { display: grid; grid-template-columns: 1fr 1fr 1.2fr; }
+.tracker__cell { padding: var(--space-8); display: grid; gap: var(--space-2); align-content: start; }
+.tracker__cell + .tracker__cell { border-left: 1px solid var(--border); }
+.stat__label { font: 600 14px/20px var(--font-sans); color: var(--ink-muted); }
+.stat__value { font: 800 56px/60px var(--font-sans); letter-spacing: -.03em; color: var(--ink-strong); font-variant-numeric: tabular-nums; }
+.stat__value--red { color: var(--red-text); }
+.stat__unit { font: 500 14px/20px var(--font-sans); color: var(--ink-muted); }
+.progress { height: 10px; border-radius: var(--radius-pill); background: var(--surface-alt); overflow: hidden; margin-top: var(--space-2); }
+.progress__bar { height: 100%; width: 0; background: var(--grad); border-radius: var(--radius-pill); transition: width .7s ease; }
+.progress__meta { display: flex; justify-content: space-between; font: 400 12px/16px var(--font-sans); color: var(--ink-muted); }
+.tracker__cta { background: var(--surface-alt); }
+.tracker__cta .sb-btn { width: 100%; }
+.tracker__note { display: flex; gap: var(--space-3); align-items: flex-start; padding: var(--space-4) var(--space-8); background: var(--red-tint); color: var(--sea-red-deep); font: 500 14px/20px var(--font-sans); }
+.tracker__note .icon { margin-top: 1px; }
+@media (max-width: 960px) {
+  .tracker__grid { grid-template-columns: 1fr 1fr; }
+  .tracker__cta { grid-column: 1 / -1; border-left: 0 !important; border-top: 1px solid var(--border); }
+}
+@media (max-width: 560px) {
+  .tracker__grid { grid-template-columns: 1fr; }
+  .tracker__cell + .tracker__cell { border-left: 0; border-top: 1px solid var(--border); }
+  .tracker__cell { padding: var(--space-6); }
+  .stat__value { font-size: 44px; line-height: 48px; }
+  .tracker__note { padding: var(--space-4) var(--space-6); }
+}
+
+/* Highlight */
+.highlight-head { margin-top: var(--space-16); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.chip { font: 600 14px/20px var(--font-sans); padding: 8px 16px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--surface); color: var(--ink-muted); cursor: pointer; }
+.chip:hover { border-color: var(--ink-subtle); color: var(--ink); }
+.chip.is-active { background: var(--surface-inverse); border-color: var(--surface-inverse); color: #fff; }
+.ugc-grid { columns: 4; column-gap: var(--space-4); }
+.ugc-card { break-inside: avoid; margin: 0 0 var(--space-4); position: relative; display: block; width: 100%; border: 0; padding: 0; border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; text-align: left; background: var(--surface-alt); }
+.ugc-card__media { position: relative; overflow: hidden; }
+.ugc-card__media > * { transition: transform .5s ease; }
+.ugc-card:hover .ugc-card__media > * { transform: scale(1.04); }
+.ugc-card__tag { position: absolute; top: var(--space-3); left: var(--space-3); z-index: 2; }
+.ugc-card__play { position: absolute; top: var(--space-3); right: var(--space-3); z-index: 2; width: 32px; height: 32px; border-radius: var(--radius-pill); background: rgba(0,0,0,.55); color: #fff; display: grid; place-items: center; }
+.ugc-card__play .icon { width: 14px; height: 14px; fill: currentColor; }
+.ugc-card__meta { position: absolute; inset: auto 0 0 0; padding: 40px var(--space-4) var(--space-4); background: linear-gradient(180deg, transparent, rgba(0,0,0,.72)); color: #fff; z-index: 2; }
+.ugc-card__user { font: 500 12px/16px var(--font-sans); opacity: .9; }
+.ugc-card__caption { font: 600 14px/20px var(--font-sans); margin-top: 2px; }
+/* Ô minh hoạ dựng bằng CSS (thay bằng ảnh/thumbnail thật khi có) */
+.mock { display: grid; justify-items: center; position: relative; }
+.mock--9x16 { aspect-ratio: 9 / 16; } .mock--4x5 { aspect-ratio: 4 / 5; } .mock--1x1 { aspect-ratio: 1 / 1; }
+.mock--red { background: var(--grad); color: #fff; }
+.mock--deep { background: linear-gradient(160deg, var(--sea-red-deep), #5c0e12); color: #fff; }
+.mock--paper { background: linear-gradient(180deg, #faf7f2, #efe9df); color: var(--ink); }
+.mock--alt { background: linear-gradient(180deg, var(--surface), var(--surface-alt)); color: var(--ink); }
+.mock--ink { background: linear-gradient(180deg, #2a2a2a, var(--surface-inverse)); color: #fff; }
+.mock__word { font: 800 64px/1 var(--font-sans); letter-spacing: -.04em; }
+.mock--paper .mock__word, .mock--alt .mock__word { color: var(--sea-red); }
+.mock { align-items: start; padding-top: 24%; }
+.mock--9x16 { padding-top: 48%; }
+.mock__lines { position: absolute; inset: 9% 14% auto; display: grid; gap: 8px; opacity: .25; }
+.mock--a { padding-top: 42%; }
+.mock--a.mock--9x16 { padding-top: 70%; }
+.mock--a.mock--1x1 { padding-top: 34%; }
+.mock__lines i { display: block; height: 6px; border-radius: 3px; background: currentColor; }
+.mock__frame { position: absolute; inset: 14% 18% 34%; border: 2px solid currentColor; border-radius: var(--radius-sm); opacity: .3; }
+.mock img, .mock video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 1024px) { .ugc-grid { columns: 3; } }
+@media (max-width: 640px) { .ugc-grid { columns: 2; column-gap: var(--space-3); } .ugc-card { margin-bottom: var(--space-3); } .mock__word { font-size: 44px; } }
+
+/* ===== Chiến dịch: Dám Thử / Dám Bước Tới / Dám Chọn ===== */
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+.pillar { padding: var(--space-6) 0 0; border-top: 3px solid var(--sea-red); display: grid; gap: var(--space-3); align-content: start; }
+.pillar__num { font: 800 14px/20px var(--font-sans); color: var(--red-text); letter-spacing: .08em; }
+@media (max-width: 900px) { .pillars { grid-template-columns: 1fr; } }
+
+.campaign-intro { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: end; margin-bottom: var(--space-12); }
+.campaign-intro .sb-head { margin: 0; }
+@media (max-width: 900px) { .campaign-intro { grid-template-columns: 1fr; gap: var(--space-4); } }
+
+/* ===== Giải pháp ===== */
+.solutions { display: grid; grid-template-columns: 320px 1fr; gap: var(--space-8); align-items: start; }
+.sol-tabs { display: grid; gap: var(--space-2); }
+.sol-tab { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--surface-raised); cursor: pointer; text-align: left; font: 600 16px/24px var(--font-sans); color: var(--ink-muted); }
+.sol-tab .sol-tab__icon { width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--surface-alt); display: grid; place-items: center; color: var(--ink); flex: none; }
+.sol-tab:hover { border-color: var(--ink-subtle); color: var(--ink); }
+.sol-tab.is-active { border-color: var(--sea-red); color: var(--ink-strong); box-shadow: var(--shadow-card); }
+.sol-tab.is-active .sol-tab__icon { background: var(--grad); color: #fff; }
+.sol-panel { background: var(--surface-raised); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); display: grid; grid-template-columns: 1.1fr .9fr; overflow: hidden; min-height: 360px; }
+.sol-panel__body { padding: var(--space-8); display: grid; gap: var(--space-4); align-content: start; }
+.sol-list { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: grid; gap: var(--space-3); }
+.sol-list li { display: flex; gap: var(--space-3); align-items: flex-start; color: var(--ink); }
+.sol-list li .tick { width: 24px; height: 24px; border-radius: var(--radius-pill); background: var(--red-tint); color: var(--sea-red-deep); display: grid; place-items: center; flex: none; }
+.sol-list li .tick .icon { width: 14px; height: 14px; stroke-width: 2.5; }
+.sol-visual { background: linear-gradient(160deg, var(--surface), var(--surface-alt)); display: grid; place-items: center; position: relative; padding: var(--space-8); }
+.sol-visual__disc { position: absolute; width: 260px; height: 260px; border-radius: 50%; background: var(--red-tint); right: -60px; top: -60px; }
+.sol-visual__icon { position: relative; width: 140px; height: 140px; border-radius: 32px; background: var(--grad); color: #fff; display: grid; place-items: center; box-shadow: var(--shadow-pop); }
+.sol-visual__icon .icon { width: 64px; height: 64px; stroke-width: 1.5; }
+@media (max-width: 960px) {
+  .solutions { grid-template-columns: 1fr; }
+  .sol-tabs { grid-template-columns: 1fr 1fr; }
+  .sol-panel { grid-template-columns: 1fr; }
+  .sol-visual { display: none; }
+}
+@media (max-width: 480px) { .sol-tab { font-size: 14px; padding: var(--space-3); } .sol-tab .sol-tab__icon { width: 32px; height: 32px; } .sol-panel__body { padding: var(--space-6); } }
+
+/* ===== Đặc quyền ===== */
+.offers { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+.offer { background: var(--surface-raised); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--border); }
+.offer__media { position: relative; aspect-ratio: 16 / 10; display: grid; place-items: center; }
+.offer__media .sb-badge { position: absolute; top: var(--space-4); left: var(--space-4); }
+.offer__media--red { background: var(--grad); color: #fff; }
+.offer__media--ink { background: linear-gradient(160deg, #2a2a2a, var(--surface-inverse)); color: #fff; }
+.offer__media--alt { background: linear-gradient(160deg, var(--surface), var(--surface-alt)); color: var(--ink); }
+.offer__figure { font: 800 56px/1 var(--font-sans); letter-spacing: -.03em; display: flex; align-items: center; gap: var(--space-3); }
+.offer__figure .icon { width: 56px; height: 56px; stroke-width: 1.25; }
+.offer__media--alt .offer__figure { color: var(--red-text); }
+.offer__body { padding: var(--space-6); display: grid; gap: var(--space-2); flex: 1; align-content: start; }
+.offer__body .sb-link { margin-top: var(--space-2); }
+@media (max-width: 900px) { .offers { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .offer__figure { font-size: 40px; } .offer__figure .icon { width: 40px; height: 40px; } }
+
+/* ===== Minigame (khối tối duy nhất của trang) ===== */
+.minigame { background: var(--surface-inverse); color: #fff; position: relative; overflow: hidden; }
+.minigame::before { content: ""; position: absolute; width: 640px; height: 640px; border-radius: 50%; right: -200px; top: -240px; background: radial-gradient(closest-side, rgba(215,25,32,.35), transparent); pointer-events: none; }
+.minigame__grid { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; gap: var(--space-12); align-items: center; }
+.minigame .sb-overline { color: #ff6b6e; }
+.minigame .sb-h2 { color: #fff; }
+.minigame .sb-lead { color: #c9c4c4; }
+.tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-top: var(--space-8); }
+.tier { border: 1px solid rgba(255,255,255,.14); border-radius: var(--radius-md); padding: var(--space-4); display: grid; gap: var(--space-1); }
+.tier b { font: 800 24px/28px var(--font-sans); }
+.tier span { font: 500 14px/20px var(--font-sans); color: #c9c4c4; }
+.tier em { font-style: normal; font: 700 16px/24px var(--font-sans); color: #ff6b6e; }
+.phone { justify-self: center; width: 280px; aspect-ratio: 9 / 16.5; border-radius: 36px; padding: 12px; background: #000; box-shadow: 0 24px 64px rgba(0,0,0,.5); }
+.phone__screen { height: 100%; border-radius: 26px; background: linear-gradient(180deg, var(--sea-red), var(--sea-red-deep)); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--space-6) var(--space-4); gap: var(--space-4); }
+.phone__timer { text-align: center; }
+.phone__timer small { display: block; font: 700 10px/12px var(--font-sans); letter-spacing: .12em; opacity: .8; }
+.phone__timer b { font: 800 40px/44px var(--font-sans); }
+.phone__card { background: #fff; color: var(--ink); border-radius: var(--radius-md); padding: var(--space-4); text-align: center; font: 700 16px/22px var(--font-sans); width: 100%; }
+.phone__yes { width: 100%; background: #fff; color: var(--sea-red); border-radius: var(--radius-md); font: 800 24px/56px var(--font-sans); text-align: center; }
+.phone__no { width: 100%; border: 1.5px solid rgba(255,255,255,.5); border-radius: var(--radius-md); font: 600 16px/44px var(--font-sans); text-align: center; color: rgba(255,255,255,.75); }
+@media (max-width: 900px) { .minigame__grid { grid-template-columns: 1fr; } .phone { width: 240px; } }
+@media (max-width: 600px) { .phone { display: none; } }
+@media (max-width: 480px) { .tiers { gap: var(--space-2); } .tier { padding: var(--space-3); } .tier b { font-size: 18px; } }
+
+/* ===== Cộng đồng ===== */
+.community { display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-8); align-items: center; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-8); }
+.community__icon { width: 72px; height: 72px; border-radius: var(--radius-lg); background: var(--red-tint); color: var(--sea-red-deep); display: grid; place-items: center; }
+.community__icon .icon { width: 36px; height: 36px; }
+.community__status { display: inline-flex; align-items: center; gap: var(--space-2); font: 500 14px/20px var(--font-sans); color: var(--ink-muted); white-space: nowrap; }
+@media (max-width: 768px) { .community { grid-template-columns: 1fr; gap: var(--space-4); padding: var(--space-6); } }
+
+/* ===== Đăng ký ===== */
+.register { display: grid; grid-template-columns: .9fr 1.1fr; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); background: var(--surface-raised); box-shadow: var(--shadow-card); }
+.register__info { background: var(--grad); color: #fff; padding: var(--space-12); display: grid; gap: var(--space-6); align-content: center; }
+.register__info .sb-h2 { color: #fff; }
+.register__info .sb-body { color: rgba(255,255,255,.9); }
+.benefits { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); }
+.benefits li { display: flex; gap: var(--space-3); align-items: flex-start; }
+.benefits .b-icon { width: 40px; height: 40px; border-radius: var(--radius-md); background: rgba(255,255,255,.16); display: grid; place-items: center; flex: none; }
+.benefits b { display: block; font: 700 16px/24px var(--font-sans); }
+.benefits span { font: 400 14px/20px var(--font-sans); color: rgba(255,255,255,.88); }
+.register__form { padding: var(--space-12); }
+.form { display: grid; gap: var(--space-4); }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.field { display: grid; gap: var(--space-2); }
+.label { font: 600 14px/20px var(--font-sans); color: var(--ink); }
+.label em { color: var(--red-text); font-style: normal; }
+.input, .select { font: 400 16px/24px var(--font-sans); color: var(--ink); background: var(--surface); padding: 12px 16px; border: 1.5px solid var(--border-control); border-radius: var(--radius-md); width: 100%; }
+.input::placeholder { color: var(--ink-subtle); }
+.input:focus, .select:focus { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%234f4f4f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px; }
+.form__success { display: none; text-align: center; padding: var(--space-8) 0; gap: var(--space-4); justify-items: center; }
+.form__success.is-visible { display: grid; }
+.success-icon { width: 64px; height: 64px; border-radius: var(--radius-pill); background: var(--red-tint); color: var(--sea-red-deep); display: grid; place-items: center; }
+.success-icon .icon { width: 32px; height: 32px; stroke-width: 2.25; }
+@media (max-width: 900px) { .register { grid-template-columns: 1fr; } .register__info, .register__form { padding: var(--space-8) var(--space-6); } }
+@media (max-width: 560px) { .form__row { grid-template-columns: 1fr; } }
+
+/* ===== Footer ===== */
+.footer { background: var(--surface-alt); border-top: 3px solid var(--sea-red); padding: var(--space-16) 0 var(--space-6); }
+.footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--space-8); }
+.footer h4 { font: 700 14px/20px var(--font-sans); text-transform: uppercase; letter-spacing: .06em; margin: 0 0 var(--space-4); color: var(--ink-strong); }
+.footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.footer a { text-decoration: none; color: var(--ink-muted); font-size: 14px; }
+.footer a:hover { color: var(--red-text); }
+.footer__bottom { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-3); }
+@media (max-width: 768px) { .footer__grid { grid-template-columns: 1fr; } }
+
+/* ===== Thanh CTA mobile ===== */
+.mobile-cta { display: none; position: fixed; inset: auto 0 0 0; z-index: 40; padding: var(--space-3) var(--space-4) calc(var(--space-3) + env(safe-area-inset-bottom)); background: rgba(255,255,255,.97); border-top: 1px solid var(--border); gap: var(--space-2); grid-template-columns: 1fr 1fr; transform: translateY(100%); transition: transform .25s ease; }
+.mobile-cta.is-visible { transform: translateY(0); }
+@media (max-width: 768px) { .mobile-cta { display: grid; } body { padding-bottom: 76px; } }
+.mobile-cta .sb-btn { padding: 12px 8px; font-size: 15px; }
+
+/* ===== Modal chung ===== */
+.modal { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.72); display: none; align-items: center; justify-content: center; padding: var(--space-4); }
+.modal.is-open { display: flex; }
+.modal__box { position: relative; background: var(--surface-raised); border-radius: var(--radius-lg); width: 100%; max-width: 520px; max-height: 92vh; overflow-y: auto; padding: var(--space-8); }
+.modal__close { position: absolute; top: var(--space-4); right: var(--space-4); width: 40px; height: 40px; border-radius: var(--radius-pill); border: 0; background: var(--surface-alt); cursor: pointer; display: grid; place-items: center; color: var(--ink); }
+.modal__close:hover { background: var(--border); }
+@media (max-width: 480px) { .modal__box { padding: var(--space-6); } }
+
+.types { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); }
+.type-btn { display: grid; justify-items: center; gap: var(--space-1); padding: var(--space-3) var(--space-2); border-radius: var(--radius-md); border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; font: 600 13px/18px var(--font-sans); color: var(--ink-muted); }
+.type-btn b { font-weight: 800; color: inherit; }
+.type-btn.is-active { border-color: var(--sea-red); background: var(--red-tint); color: var(--sea-red-deep); }
+.drop { display: grid; place-items: center; gap: var(--space-2); text-align: center; border: 2px dashed var(--border); border-radius: var(--radius-md); padding: var(--space-6); cursor: pointer; color: var(--ink-muted); transition: border-color .15s; }
+.drop:hover { border-color: var(--sea-red); }
+.drop__preview img, .drop__preview video { max-height: 200px; border-radius: var(--radius-sm); margin: 0 auto; }
+.error { color: var(--red-text); font: 500 14px/20px var(--font-sans); margin: 0; display: none; }
+.error.is-visible { display: block; }
+
+/* Lightbox */
+.lightbox__box { max-width: 420px; width: 100%; }
+.lightbox__media { border-radius: var(--radius-lg); overflow: hidden; }
+.lightbox__media .mock { max-height: 72vh; }
+.lightbox__text { color: #fff; margin-top: var(--space-4); }
+.lightbox__close { position: absolute; top: -52px; right: 0; width: 40px; height: 40px; border-radius: var(--radius-pill); border: 0; background: rgba(255,255,255,.14); color: #fff; cursor: pointer; display: grid; place-items: center; }
+
+/* ===== Minigame popup ===== */
+.game { position: relative; width: 100%; height: 100%; max-width: 720px; background: linear-gradient(180deg, var(--sea-red), var(--sea-red-deep)); color: #fff; display: flex; flex-direction: column; overflow: hidden; }
+@media (min-width: 641px) { .game { height: 88vh; border-radius: var(--radius-lg); } }
+#minigame-modal { padding: 0; }
+@media (min-width: 641px) { #minigame-modal { padding: var(--space-6); } }
+.game__close { position: absolute; top: var(--space-4); right: var(--space-4); z-index: 50; width: 40px; height: 40px; border-radius: var(--radius-pill); border: 0; background: rgba(0,0,0,.25); color: #fff; cursor: pointer; display: grid; place-items: center; }
+.game__timer { text-align: center; padding: 36px 0 8px; flex: none; }
+.game__timer small { display: block; font: 700 11px/14px var(--font-sans); letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
+.game__timer b { font: 800 48px/52px var(--font-sans); }
+.game__score { position: absolute; top: 20px; left: 20px; z-index: 30; width: 56px; height: 56px; border-radius: var(--radius-pill); background: #fff; color: var(--sea-red); display: grid; place-items: center; align-content: center; line-height: 1; box-shadow: 0 6px 16px rgba(0,0,0,.2); }
+.game__score b { font: 800 18px/1 var(--font-sans); }
+.game__score small { font: 700 8px/1 var(--font-sans); color: var(--ink-subtle); text-transform: uppercase; margin-top: 2px; }
+.game__area { position: relative; flex: 1; }
+.game__card { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); width: 86%; max-width: 380px; background: #fff; color: var(--ink); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-6); text-align: center; z-index: 10; transition: transform .15s ease-out, opacity .15s; box-shadow: 0 10px 24px rgba(0,0,0,.18); }
+.game__card small { display: block; font: 700 10px/14px var(--font-sans); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-subtle); margin-bottom: var(--space-2); }
+.game__q { font: 700 18px/26px var(--font-sans); min-height: 52px; display: flex; align-items: center; justify-content: center; }
+.slot { position: absolute; width: 144px; height: 64px; border-radius: var(--radius-md); z-index: 20; cursor: pointer; border: 0; transition: transform .1s ease-out, background-color .2s, color .2s; }
+.slot.role-yes { background: #fff; color: var(--sea-red); font: 800 22px/1 var(--font-sans); box-shadow: 0 8px 20px rgba(0,0,0,.2); }
+.slot.role-no { background: rgba(0,0,0,.22); color: rgba(255,255,255,.7); font: 600 16px/1 var(--font-sans); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
+.slot.is-pressed { transform: scale(.95); }
+@keyframes wrongShake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.slot.is-wrong { animation: wrongShake .22s ease-in-out; }
+.game__overlay { position: absolute; inset: 0; z-index: 40; background: rgba(0,0,0,.78); display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: var(--space-6); gap: var(--space-3); }
+.game__overlay.is-visible { display: flex; }
+.game__overlay p { color: #d6d0d0; max-width: 320px; margin: 0; font-size: 14px; line-height: 20px; }
+.game__overlay h4 { font: 700 22px/28px var(--font-sans); margin: 0; }
+.game__result-icon { width: 64px; height: 64px; border-radius: var(--radius-pill); background: rgba(255,255,255,.12); display: grid; place-items: center; }
+.game__result-icon .icon { width: 32px; height: 32px; }
+.game__voucher { background: #fff; color: var(--sea-red-deep); font: 800 16px/24px var(--font-sans); padding: 12px 24px; border-radius: var(--radius-md); }
+.game__actions { display: flex; gap: var(--space-3); margin-top: var(--space-3); flex-wrap: wrap; justify-content: center; }
+.game__skyline { position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: rgba(0,0,0,.2); pointer-events: none; clip-path: polygon(0% 100%, 0% 60%, 8% 60%, 8% 40%, 16% 40%, 16% 70%, 24% 70%, 24% 30%, 32% 30%, 32% 55%, 40% 55%, 40% 20%, 48% 20%, 48% 65%, 56% 65%, 56% 35%, 64% 35%, 64% 50%, 72% 50%, 72% 25%, 80% 25%, 80% 60%, 88% 60%, 88% 40%, 96% 40%, 96% 100%); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<!-- Bộ icon nét (outline) dùng chung -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3.5v11L16 14"/></symbol>
+  <symbol id="i-sign" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="12" rx="2"/><path d="M8 15v6M16 15v6M7 8h10M7 11h6"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M5 12v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8"/><path d="M12 8c-1.5-3-5-4-5.5-2S9 8 12 8zM12 8c1.5-3 5-4 5.5-2S15 8 12 8z"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 0 4v0a2 2 0 0 1 0 4v2h18v-2a2 2 0 0 1 0-4 2 2 0 0 0 0-4V6H3z"/><path d="M14 6v12" stroke-dasharray="2 2"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+  <symbol id="i-piggy" viewBox="0 0 24 24"><path d="M19 9.5c1 .5 2 1.5 2 3h-1.5a6 6 0 0 1-2.5 3.5V19h-3v-2h-4v2H7v-3a6 6 0 0 1 1-10.5 6 6 0 0 1 3.5-1h1A6 6 0 0 1 17 7l2-1.5z"/><circle cx="15.5" cy="10" r=".5"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v11h14V9"/><path d="M10 20v-6h4v6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="14" width="4" height="6" rx="1.5"/><rect x="17.5" y="14" width="4" height="6" rx="1.5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/><path d="M3 21h4M17 21h4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 21h8M9 17h6"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></symbol>
+</svg>
+
+<a class="sr-only" href="#say-yes">Bỏ qua tới nội dung chính</a>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header">
+  <div class="container">
+    <div class="header__bar">
+      <!-- Chưa có file logo gốc: dùng chữ thường. Thay bằng logo SeABank chính thức khi có. -->
+      <a href="#top" class="wordmark" aria-label="SeABank, về đầu trang">SeABank <small>× Mỹ Tâm</small></a>
+      <nav class="nav" aria-label="Điều hướng chính">
+        <a href="#say-yes">Hãy tìm Say Yes</a>
+        <a href="#chien-dich">Chiến dịch</a>
+        <a href="#giai-phap">Giải pháp</a>
+        <a href="#dac-quyen">Đặc quyền</a>
+        <a href="#minigame">Minigame</a>
+        <a href="#cong-dong">Cộng đồng</a>
+      </nav>
+      <div class="header__actions">
+        <a href="#dang-ky" class="sb-btn sb-btn--primary sb-btn--sm header__cta">Đăng ký tư vấn</a>
+        <button class="menu-btn" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="mobile-nav" onclick="toggleMenu()">
+          <svg class="icon"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Điều hướng trên di động">
+      <a href="#say-yes" onclick="toggleMenu(false)">Hãy tìm Say Yes</a>
+      <a href="#chien-dich" onclick="toggleMenu(false)">Chiến dịch</a>
+      <a href="#giai-phap" onclick="toggleMenu(false)">Giải pháp</a>
+      <a href="#dac-quyen" onclick="toggleMenu(false)">Đặc quyền</a>
+      <a href="#minigame" onclick="toggleMenu(false)">Minigame</a>
+      <a href="#cong-dong" onclick="toggleMenu(false)">Cộng đồng</a>
+      <a href="#dang-ky" onclick="toggleMenu(false)">Đăng ký tư vấn</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===================== HERO: KEY VISUAL ===================== -->
+  <section class="hero" aria-label="Key visual chiến dịch">
+    <div class="hero__kv">
+      <img src="kv.jpg" width="1702" height="956" fetchpriority="high"
+           alt="Đại sứ Mỹ Tâm ngồi trên chữ SAY, dải lụa nhiều màu viết chữ Yesss. SeABank x Mỹ Tâm: Tự tin chạm tới những điều tốt đẹp.">
+    </div>
+  </section>
+
+  <div class="hero-bottom">
+    <div class="container hero__panel-wrap">
+      <div class="hero__panel">
+        <div class="hero__copy">
+          <p class="sb-overline">Chiến dịch đồng hành 2026</p>
+          <h1 class="sb-h1">Say Yes cùng <span class="sb-grad-text">SeABank</span> và Mỹ Tâm</h1>
+          <p class="sb-lead">Đừng chờ đến khi đủ đầy mới bắt đầu. Hãy tự tin nói "Có" với những cơ hội tốt đẹp hơn, SeABank đồng hành cùng bạn trên mỗi chặng đường.</p>
+          <div class="hero__ctas">
+            <button type="button" class="sb-btn sb-btn--primary sb-btn--lg" onclick="openUpload()">
+              <svg class="icon"><use href="#i-upload"/></svg> Đăng tải SAY YES
+            </button>
+            <a href="#dang-ky" class="sb-btn sb-btn--secondary sb-btn--lg">Mở thẻ mới</a>
+          </div>
+        </div>
+        <div class="hero__facts">
+          <div class="hero__fact"><b>1 tư liệu</b><span>= 1 SAY YES</span></div>
+          <div class="hero__fact"><b>60 giây</b><span>Minigame Yes Man</span></div>
+          <div class="hero__fact"><b>3 đặc quyền</b><span>Gift Box, YES Night, YES Day</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== 1. HÃY TÌM "SAY YES" ===================== -->
+  <section class="section" id="say-yes">
+    <div class="container">
+      <div class="sb-head">
+        <p class="sb-overline">Mini-campaign online</p>
+        <h2 class="sb-h2">Hãy tìm <span class="sb-grad-text">"SAY YES"</span> quanh bạn</h2>
+        <p class="sb-lead">Tìm bất cứ thứ gì có chữ "Yes": chụp một trang sách, quay một đoạn phim có người nói "yes", hay tự quay chính mình nói "yes", rồi đăng tải ngay trên trang này.</p>
+        <span class="equation"><svg class="icon"><use href="#i-sparkle"/></svg> Mỗi tư liệu đăng tải = <b>1 SAY YES</b></span>
+      </div>
+
+      <div class="find-steps">
+        <article class="step">
+          <div class="step__top"><span class="step__letter">A</span><span class="step__icon"><svg class="icon"><use href="#i-book"/></svg></span></div>
+          <h3 class="sb-h3">Bài viết có từ "yes"</h3>
+          <p class="sb-body">Chụp lại trang sách, mẩu truyện, bài báo hay dòng chữ bất kỳ có xuất hiện từ "yes".</p>
+        </article>
+        <article class="step">
+          <div class="step__top"><span class="step__letter">B</span><span class="step__icon"><svg class="icon"><use href="#i-video"/></svg></span></div>
+          <h3 class="sb-h3">Video selfie nói "Say Yesss"</h3>
+          <p class="sb-body">Tự quay bản thân nói "yes", hoặc quay lại một đoạn phim có người nói "yes".</p>
+        </article>
+        <article class="step">
+          <div class="step__top"><span class="step__letter">C</span><span class="step__icon"><svg class="icon"><use href="#i-sign"/></svg></span></div>
+          <h3 class="sb-h3">Ảnh quảng cáo ngoài trời</h3>
+          <p class="sb-body">Bắt gặp chữ "Yes" trên biển quảng cáo, pano hay bảng hiệu ngoài đường? Chụp lại ngay.</p>
+        </article>
+      </div>
+
+      <!-- Bảng đếm SAY YES (mock-up giao diện tài khoản, slide 19) -->
+      <div class="tracker" aria-live="polite">
+        <div class="tracker__grid">
+          <div class="tracker__cell">
+            <span class="stat__label">Toàn chiến dịch đã có</span>
+            <span class="stat__value stat__value--red" id="sy-total">49.000</span>
+            <span class="stat__unit">submission SAY YES</span>
+          </div>
+          <div class="tracker__cell">
+            <span class="stat__label">Bạn đã đóng góp</span>
+            <span class="stat__value" id="sy-mine">0</span>
+            <span class="stat__unit">lượt submission SAY YES</span>
+          </div>
+          <div class="tracker__cell tracker__cta">
+            <span class="stat__label">Phần đóng góp của bạn</span>
+            <div class="progress" role="progressbar" aria-label="Phần đóng góp của bạn trên tổng SAY YES" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="sy-progress">
+              <div class="progress__bar" id="sy-bar"></div>
+            </div>
+            <div class="progress__meta"><span>0</span><span id="sy-pct">0%</span></div>
+            <div style="display:grid;gap:var(--space-2);margin-top:var(--space-3)">
+              <button type="button" class="sb-btn sb-btn--primary" onclick="openUpload()"><svg class="icon"><use href="#i-upload"/></svg> Đăng tải SAY YES</button>
+              <a href="#dang-ky" class="sb-btn sb-btn--secondary">Mở thẻ mới</a>
+            </div>
+          </div>
+        </div>
+        <div class="tracker__note">
+          <svg class="icon"><use href="#i-gift"/></svg>
+          <span>Kết thúc mini-campaign, tất cả thẻ mở mới trong thời gian chương trình sẽ nhận quà dựa trên số SAY YES thu thập được. Càng nhiều SAY YES, chủ thẻ mới càng có lợi.</span>
+        </div>
+      </div>
+
+      <!-- Highlight -->
+      <div class="sb-head sb-head--row highlight-head">
+        <div>
+          <h3 class="sb-h2" style="font-size:24px;line-height:32px">Highlight SAY YES từ cộng đồng</h3>
+          <p class="sb-body">Những tư liệu nổi bật được chọn từ lượt đăng tải của người tham gia.</p>
+        </div>
+        <div class="chips" role="group" aria-label="Lọc theo loại tư liệu">
+          <button type="button" class="chip is-active" data-filter="all">Tất cả</button>
+          <button type="button" class="chip" data-filter="A">A · Bài viết</button>
+          <button type="button" class="chip" data-filter="B">B · Video selfie</button>
+          <button type="button" class="chip" data-filter="C">C · Ngoài trời</button>
+        </div>
+      </div>
+      <div class="ugc-grid" id="ugc-grid"></div>
+      <p class="sb-caption">* Hình ảnh và số liệu minh hoạ.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 2. THÔNG TIN CHIẾN DỊCH ===================== -->
+  <section class="section section--alt" id="chien-dich">
+    <div class="container">
+      <div class="campaign-intro">
+        <div class="sb-head">
+          <p class="sb-overline">Tinh thần SAY YES</p>
+          <h2 class="sb-h2">Tự tin nói <span class="sb-grad-text">"Yes"</span> để tiến xa hơn</h2>
+        </div>
+        <p class="sb-lead">Người dám nói "Yes" là người mở ra nhiều cơ hội hơn cho chính mình. SeABank đồng hành cùng bạn trên mọi chặng đường.</p>
+      </div>
+      <div class="pillars">
+        <article class="pillar">
+          <span class="pillar__num">01</span>
+          <h3 class="sb-h3">Dám Thử</h3>
+          <p class="sb-body">Thử sức với những lĩnh vực mới, những trải nghiệm bạn hằng mong ước, ngay từ bây giờ mà không cần chần chừ.</p>
+        </article>
+        <article class="pillar">
+          <span class="pillar__num">02</span>
+          <h3 class="sb-h3">Dám Bước Tới</h3>
+          <p class="sb-body">Bước ra khỏi vùng an toàn. Một chuyến đi cùng gia đình, một căn nhà mơ ước không còn là đích đến quá xa.</p>
+        </article>
+        <article class="pillar">
+          <span class="pillar__num">03</span>
+          <h3 class="sb-h3">Dám Chọn</h3>
+          <p class="sb-body">Chọn những điều tốt đẹp hơn cho tương lai, cùng sự đồng hành tài chính vững chắc từ SeABank.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="giai-phap">
+    <div class="container">
+      <div class="sb-head">
+        <p class="sb-overline">Giải pháp tài chính</p>
+        <h2 class="sb-h2">Bốn sản phẩm giúp bạn Say Yes dễ dàng hơn</h2>
+        <p class="sb-lead">SeABank mang đến các sản phẩm, dịch vụ hiện đại để bạn nắm bắt mọi cơ hội trong cuộc sống.</p>
+      </div>
+      <div class="solutions">
+        <div class="sol-tabs" role="tablist" aria-label="Sản phẩm">
+          <button type="button" class="sol-tab is-active" role="tab" aria-selected="true" data-index="0"><span class="sol-tab__icon"><svg class="icon"><use href="#i-card"/></svg></span>Thẻ tín dụng</button>
+          <button type="button" class="sol-tab" role="tab" aria-selected="false" data-index="1"><span class="sol-tab__icon"><svg class="icon"><use href="#i-phone"/></svg></span>Ngân hàng số</button>
+          <button type="button" class="sol-tab" role="tab" aria-selected="false" data-index="2"><span class="sol-tab__icon"><svg class="icon"><use href="#i-piggy"/></svg></span>Tiết kiệm &amp; Tích lũy</button>
+          <button type="button" class="sol-tab" role="tab" aria-selected="false" data-index="3"><span class="sol-tab__icon"><svg class="icon"><use href="#i-home"/></svg></span>Vay vốn linh hoạt</button>
+        </div>
+        <div class="sol-panel" role="tabpanel">
+          <div class="sol-panel__body">
+            <span class="sb-badge sb-badge--soft" id="sol-tag">Say Yes với trải nghiệm</span>
+            <h3 class="sb-h2" style="font-size:28px;line-height:36px" id="sol-title">Thẻ tín dụng SeABank</h3>
+            <p class="sb-body" id="sol-desc"></p>
+            <ul class="sol-list" id="sol-features"></ul>
+            <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-2)">
+              <a href="#dang-ky" class="sb-btn sb-btn--primary">Đăng ký sản phẩm</a>
+            </div>
+            <p class="sb-caption">Nội dung sản phẩm minh hoạ, chờ SeABank cung cấp. Điều kiện và điều khoản áp dụng.</p>
+          </div>
+          <div class="sol-visual" aria-hidden="true">
+            <span class="sol-visual__disc"></span>
+            <span class="sol-visual__icon"><svg class="icon"><use href="#i-card" id="sol-visual-use"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="dac-quyen">
+    <div class="container">
+      <div class="sb-head">
+        <p class="sb-overline">Đặc quyền SAY YES</p>
+        <h2 class="sb-h2">Đăng ký hôm nay, nhận quà liền tay</h2>
+        <p class="sb-lead">Những phần quà mang dấu ấn Mỹ Tâm dành cho những ai dám nói "Yes" cùng SeABank.</p>
+      </div>
+      <div class="offers">
+        <article class="offer">
+          <div class="offer__media offer__media--red">
+            <span class="sb-badge sb-badge--ink">Giới hạn</span>
+            <span class="offer__figure"><svg class="icon"><use href="#i-gift"/></svg></span>
+          </div>
+          <div class="offer__body">
+            <h3 class="sb-h3">Gift Box độc quyền</h3>
+            <p class="sb-body">Bộ quà tặng "SeABank x Mỹ Tâm" phiên bản giới hạn khi mở tài khoản, thẻ hoặc tiết kiệm.</p>
+            <a href="#dang-ky" class="sb-link">Nhận quà ngay <svg class="icon"><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+        <article class="offer">
+          <div class="offer__media offer__media--ink">
+            <span class="sb-badge sb-badge--promo">VIP Access</span>
+            <span class="offer__figure"><svg class="icon"><use href="#i-music"/></svg> YES Night</span>
+          </div>
+          <div class="offer__body">
+            <h3 class="sb-h3">Vé đêm nhạc YES Night</h3>
+            <p class="sb-body">Cơ hội bốc thăm tham gia đêm nhạc Private quy mô 3.000 khách cùng Mỹ Tâm.</p>
+            <a href="#dang-ky" class="sb-link">Tìm hiểu thể lệ <svg class="icon"><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+        <article class="offer">
+          <div class="offer__media offer__media--alt">
+            <span class="sb-badge sb-badge--soft"><svg class="icon"><use href="#i-calendar"/></svg> Thứ 7 hằng tuần</span>
+            <span class="offer__figure">200K</span>
+          </div>
+          <div class="offer__body">
+            <h3 class="sb-h3">E-voucher YES Day</h3>
+            <p class="sb-body">Nhận voucher mua sắm trị giá 50K đến 200K khi đăng ký dịch vụ và phát sinh giao dịch vào ngày YES Day.</p>
+            <a href="#dang-ky" class="sb-link">Xem chi tiết ưu đãi <svg class="icon"><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+      </div>
+      <p class="sb-caption" style="margin-top:var(--space-6)">*Điều kiện và điều khoản áp dụng. Thời hạn chương trình sẽ được cập nhật.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 3. MINIGAME ===================== -->
+  <section class="section minigame" id="minigame">
+    <div class="container minigame__grid">
+      <div>
+        <div class="sb-head" style="margin-bottom:0">
+          <p class="sb-overline">Minigame tương tác</p>
+          <h2 class="sb-h2">Trở thành Yes Man trong 60 giây</h2>
+          <p class="sb-lead">Bấm YES đúng vị trí, càng nhanh càng tốt để trả lời được nhiều câu hỏi nhất. Trả lời càng nhiều, giá trị quà tặng càng tăng.</p>
+        </div>
+        <div class="tiers">
+          <div class="tier"><b>30 YES</b><span>nhận</span><em>Voucher 50K</em></div>
+          <div class="tier"><b>40 YES</b><span>nhận</span><em>Voucher 100K</em></div>
+          <div class="tier"><b>50 YES</b><span>nhận</span><em>Voucher 200K</em></div>
+        </div>
+        <div style="margin-top:var(--space-8)">
+          <button type="button" class="sb-btn sb-btn--primary sb-btn--lg" onclick="openMinigame()"><svg class="icon"><use href="#i-zap"/></svg> Chơi minigame ngay</button>
+        </div>
+      </div>
+      <div class="phone" aria-hidden="true">
+        <div class="phone__screen">
+          <div class="phone__timer"><small>TIME LEFT</small><b>60s</b></div>
+          <div class="phone__card">Mở tài khoản nhận quà không?</div>
+          <div class="phone__yes">YES</div>
+          <div class="phone__no">NO</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CỘNG ĐỒNG ===================== -->
+  <section class="section section--alt" id="cong-dong">
+    <div class="container">
+      <div class="community">
+        <span class="community__icon"><svg class="icon"><use href="#i-heart"/></svg></span>
+        <div style="display:grid;gap:var(--space-2)">
+          <p class="sb-overline">Trách nhiệm cộng đồng</p>
+          <h2 class="sb-h3" style="font-size:24px;line-height:32px">Say Yes cho cộng đồng</h2>
+          <p class="sb-body">Song hành cùng chiến dịch, SeABank và Đại sứ Mỹ Tâm mong muốn lan toả những giá trị tích cực tới cộng đồng. Thông tin chi tiết sẽ được cập nhật trong thời gian tới.</p>
+        </div>
+        <span class="community__status"><svg class="icon"><use href="#i-clock"/></svg> Đang cập nhật</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ĐĂNG KÝ ===================== -->
+  <section class="section" id="dang-ky">
+    <div class="container">
+      <div class="register">
+        <div class="register__info">
+          <div style="display:grid;gap:var(--space-3)">
+            <p class="sb-overline" style="color:#fff;opacity:.85">Đăng ký tư vấn</p>
+            <h2 class="sb-h2">Sẵn sàng SAY YES!</h2>
+            <p class="sb-body">Để lại thông tin, chuyên viên SeABank sẽ liên hệ để tư vấn giải pháp phù hợp nhất với bạn.</p>
+          </div>
+          <ul class="benefits">
+            <li><span class="b-icon"><svg class="icon"><use href="#i-headset"/></svg></span><div><b>Tư vấn miễn phí</b><span>Quy trình nhanh gọn, hỗ trợ tận tình.</span></div></li>
+            <li><span class="b-icon"><svg class="icon"><use href="#i-gift"/></svg></span><div><b>Ưu đãi độc quyền</b><span>Cơ hội nhận Gift Box Mỹ Tâm và voucher.</span></div></li>
+            <li><span class="b-icon"><svg class="icon"><use href="#i-shield"/></svg></span><div><b>Bảo mật thông tin</b><span>Thông tin chỉ dùng để SeABank liên hệ tư vấn.</span></div></li>
+          </ul>
+        </div>
+        <div class="register__form">
+          <form class="form" id="campaignForm" novalidate>
+            <div class="form__row">
+              <div class="field">
+                <label class="label" for="form-name">Họ và tên <em>*</em></label>
+                <input class="input" id="form-name" name="name" type="text" autocomplete="name" required placeholder="Nguyễn Văn A">
+              </div>
+              <div class="field">
+                <label class="label" for="form-phone">Số điện thoại <em>*</em></label>
+                <input class="input" id="form-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="090x xxx xxx">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label" for="form-service">Bạn muốn SAY YES với dịch vụ nào? <em>*</em></label>
+              <select class="select" id="form-service" name="service" required>
+                <option value="" disabled selected>Chọn dịch vụ quan tâm</option>
+                <option value="the-tin-dung">Thẻ tín dụng</option>
+                <option value="ngan-hang-so">Ngân hàng số SeAMobile</option>
+                <option value="tiet-kiem">Tiết kiệm &amp; Tích lũy</option>
+                <option value="vay-von">Vay vốn (mua nhà, mua xe...)</option>
+              </select>
+            </div>
+            <p class="error" id="form-error">Vui lòng điền đủ họ tên, số điện thoại và dịch vụ quan tâm.</p>
+            <button type="submit" class="sb-btn sb-btn--primary sb-btn--lg sb-btn--block">Gửi yêu cầu tư vấn</button>
+            <p class="sb-caption" style="text-align:center">Bằng việc đăng ký, bạn đồng ý với <a href="#" style="color:var(--red-text)">chính sách bảo mật</a> của SeABank.</p>
+          </form>
+          <div class="form__success" id="success-msg">
+            <span class="success-icon"><svg class="icon"><use href="#i-check"/></svg></span>
+            <h3 class="sb-h2" style="font-size:24px;line-height:32px">Đăng ký thành công!</h3>
+            <p class="sb-body">Cảm ơn bạn đã Say Yes cùng SeABank. Chuyên viên tư vấn sẽ liên hệ với bạn sớm.</p>
+            <button type="button" class="sb-btn sb-btn--secondary" onclick="resetForm()">Gửi thêm yêu cầu</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div style="display:grid;gap:var(--space-3);align-content:start">
+        <span class="wordmark">SeABank</span>
+        <p class="sb-small">Ngân hàng TMCP Đông Nam Á (SeABank)</p>
+      </div>
+      <div>
+        <h4>Chiến dịch SAY YES</h4>
+        <ul>
+          <li><a href="#say-yes">Hãy tìm SAY YES</a></li>
+          <li><a href="#dac-quyen">Thể lệ Gift Box</a></li>
+          <li><a href="#dac-quyen">Đêm nhạc YES Night</a></li>
+          <li><a href="#dac-quyen">YES Day hằng tuần</a></li>
+          <li><a href="#minigame">Minigame Yes Man</a></li>
+          <li><a href="#cong-dong">Hoạt động cộng đồng</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <ul>
+          <li><a href="tel:1900555587">Hotline: 1900 555 587</a></li>
+          <li><a href="https://www.seabank.com.vn" target="_blank" rel="noopener">seabank.com.vn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="sb-caption">© 2026 Ngân hàng TMCP Đông Nam Á. Mọi quyền được bảo lưu.</p>
+      <p class="sb-caption"><a href="#">Chính sách bảo mật</a> · <a href="#">Điều khoản sử dụng</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- Thanh CTA cố định trên mobile -->
+<div class="mobile-cta" id="mobile-cta">
+  <button type="button" class="sb-btn sb-btn--primary" onclick="openUpload()"><svg class="icon"><use href="#i-upload"/></svg> Đăng SAY YES</button>
+  <a href="#dang-ky" class="sb-btn sb-btn--secondary">Mở thẻ mới</a>
+</div>
+
+<!-- ===================== POPUP ĐĂNG TẢI ===================== -->
+<div class="modal" id="upload-modal" role="dialog" aria-modal="true" aria-labelledby="upload-title">
+  <div class="modal__box">
+    <button type="button" class="modal__close" aria-label="Đóng" onclick="closeUpload()"><svg class="icon"><use href="#i-x"/></svg></button>
+    <div id="upload-form-wrap" style="display:grid;gap:var(--space-4)">
+      <div style="display:grid;gap:var(--space-1)">
+        <h3 class="sb-h2" style="font-size:24px;line-height:32px" id="upload-title">Đăng tải SAY YES</h3>
+        <p class="sb-small">Mỗi tư liệu hợp lệ được tính 1 SAY YES.</p>
+      </div>
+      <div class="field">
+        <span class="label">Loại tư liệu <em>*</em></span>
+        <div class="types" role="group" aria-label="Loại tư liệu">
+          <button type="button" class="type-btn is-active" data-type="A"><svg class="icon"><use href="#i-book"/></svg><b>A</b>Bài viết</button>
+          <button type="button" class="type-btn" data-type="B"><svg class="icon"><use href="#i-video"/></svg><b>B</b>Video selfie</button>
+          <button type="button" class="type-btn" data-type="C"><svg class="icon"><use href="#i-sign"/></svg><b>C</b>Ngoài trời</button>
+        </div>
+      </div>
+      <label class="drop" for="upload-file">
+        <input type="file" id="upload-file" accept="image/*,video/*" class="sr-only">
+        <span id="upload-placeholder" style="display:grid;justify-items:center;gap:var(--space-2)">
+          <svg class="icon icon--lg"><use href="#i-upload"/></svg>
+          <span style="font-weight:600;color:var(--ink)">Chọn ảnh hoặc video</span>
+          <span class="sb-caption">JPG, PNG, MP4 · tối đa 50MB</span>
+        </span>
+        <span class="drop__preview" id="upload-preview" hidden></span>
+      </label>
+      <div class="field">
+        <label class="label" for="upload-caption">Bạn tìm thấy chữ "Yes" ở đâu?</label>
+        <input class="input" id="upload-caption" type="text" maxlength="80" placeholder="VD: Trang sách mình đang đọc">
+      </div>
+      <p class="error" id="upload-error">Vui lòng chọn ảnh hoặc video để đăng tải.</p>
+      <button type="button" class="sb-btn sb-btn--primary sb-btn--lg sb-btn--block" onclick="submitUpload()">Gửi SAY YES</button>
+    </div>
+    <div class="form__success" id="upload-success">
+      <span class="success-icon"><svg class="icon"><use href="#i-check"/></svg></span>
+      <h3 class="sb-h2" style="font-size:24px;line-height:32px">+1 SAY YES!</h3>
+      <p class="sb-body">Bạn đã có <b id="upload-mine" style="color:var(--red-text)">0</b> SAY YES. Mở thẻ mới SeABank để nhận quà khi mini-campaign kết thúc.</p>
+      <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;justify-content:center">
+        <button type="button" class="sb-btn sb-btn--secondary" onclick="resetUpload()">Đăng tiếp</button>
+        <a href="#dang-ky" class="sb-btn sb-btn--primary" onclick="closeUpload()">Mở thẻ mới ngay</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox highlight -->
+<div class="modal" id="ugc-lightbox" role="dialog" aria-modal="true" aria-label="Xem tư liệu">
+  <div class="lightbox__box" style="position:relative">
+    <button type="button" class="lightbox__close" aria-label="Đóng" onclick="closeUgc()"><svg class="icon"><use href="#i-x"/></svg></button>
+    <div class="lightbox__media" id="lb-media"></div>
+    <div class="lightbox__text">
+      <div class="sb-caption" style="color:#d6d0d0" id="lb-user"></div>
+      <div style="font-weight:600;margin-top:2px" id="lb-caption"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== POPUP MINIGAME ===================== -->
+<div class="modal" id="minigame-modal" role="dialog" aria-modal="true" aria-label="Minigame Yes Man 60 giây">
+  <div class="game">
+    <button type="button" class="game__close" aria-label="Đóng minigame" onclick="closeMinigame()"><svg class="icon"><use href="#i-x"/></svg></button>
+    <div class="game__skyline"></div>
+    <div class="game__timer"><small>Time left</small><b id="game-timer">60s</b></div>
+    <div class="game__score"><b id="game-score">0</b><small>Yes</small></div>
+    <div class="game__area" id="game-play-area">
+      <div class="game__card" id="game-card"><small>Say Yes với...</small><div class="game__q" id="game-question">Mở tài khoản nhận quà không?</div></div>
+      <button type="button" class="slot role-yes" id="slot-1" data-role="yes" onclick="handleSlotClick(1)">YES</button>
+      <button type="button" class="slot role-no" id="slot-2" data-role="no" onclick="handleSlotClick(2)">NO</button>
+
+      <div class="game__overlay is-visible" id="game-start-overlay">
+        <span class="game__result-icon"><svg class="icon"><use href="#i-zap"/></svg></span>
+        <h4>Sẵn sàng Say Yes?</h4>
+        <p>Nút YES xuất hiện ngẫu nhiên khắp màn hình, xen kẽ với nút NO. Bấm đúng YES càng nhanh, càng nhiều câu hỏi, quà càng lớn.</p>
+        <button type="button" class="sb-btn sb-btn--white" style="margin-top:var(--space-3)" onclick="startGame()">Bắt đầu</button>
+      </div>
+      <div class="game__overlay" id="game-result-overlay">
+        <span class="game__result-icon"><svg class="icon"><use href="#i-trophy" id="result-icon"/></svg></span>
+        <h4>Hoàn thành!</h4>
+        <p>Bạn đã nói YES <b id="result-count" style="color:#fff">0</b> lần</p>
+        <div class="game__voucher" id="result-voucher"></div>
+        <div class="game__actions">
+          <button type="button" class="sb-btn sb-btn--ghost-light sb-btn--sm" onclick="startGame()"><svg class="icon"><use href="#i-refresh"/></svg> Chơi lại</button>
+          <a href="#dang-ky" class="sb-btn sb-btn--white sb-btn--sm" onclick="closeMinigame()">Nhận quà ngay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ Tiện ích ============ */
+const $ = (id) => document.getElementById(id);
+const fmt = (n) => n.toLocaleString('vi-VN');
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+let lastFocus = null;
+function openModal(id) {
+  lastFocus = document.activeElement;
+  $(id).classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  const f = $(id).querySelector('button, [href], input');
+  if (f) f.focus({ preventScroll: true });
+}
+function closeModal(id) {
+  $(id).classList.remove('is-open');
+  if (!document.querySelector('.modal.is-open')) document.body.style.overflow = '';
+  if (lastFocus) lastFocus.focus({ preventScroll: true });
+}
+document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => {
+  if (e.target === m) { m.id === 'minigame-modal' ? closeMinigame() : closeModal(m.id); }
+}));
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if ($('minigame-modal').classList.contains('is-open')) closeMinigame();
+  ['upload-modal', 'ugc-lightbox'].forEach(id => $(id).classList.contains('is-open') && closeModal(id));
+});
+
+/* ============ Menu mobile ============ */
+function toggleMenu(force) {
+  const nav = $('mobile-nav');
+  const open = typeof force === 'boolean' ? force : !nav.classList.contains('is-open');
+  nav.classList.toggle('is-open', open);
+  document.querySelector('.menu-btn').setAttribute('aria-expanded', open);
+}
+
+/* ============ Hãy tìm SAY YES: highlight ============ */
+// Dữ liệu minh hoạ, thay bằng highlight thật (đặt `src` là đường dẫn ảnh/thumbnail). cat: A bài viết, B video selfie, C ngoài trời
+const ugcItems = [
+  { cat: 'B', ratio: '9x16', tone: 'red',   user: '@nguoidung_01', caption: 'Tự quay mình nói "Say Yesss"' },
+  { cat: 'A', ratio: '4x5',  tone: 'paper', user: '@nguoidung_02', caption: 'Một trang sách có chữ "yes"' },
+  { cat: 'C', ratio: '4x5',  tone: 'ink',   user: '@nguoidung_03', caption: 'Pano "Yes" trên đường đi làm' },
+  { cat: 'A', ratio: '1x1',  tone: 'alt',   user: '@nguoidung_04', caption: 'Mẩu truyện đọc trước khi ngủ' },
+  { cat: 'B', ratio: '4x5',  tone: 'deep',  user: '@nguoidung_05', caption: 'Đoạn phim có người nói "yes"' },
+  { cat: 'C', ratio: '9x16', tone: 'alt',   user: '@nguoidung_06', caption: 'Bảng hiệu bắt gặp cuối tuần' },
+  { cat: 'B', ratio: '1x1',  tone: 'ink',   user: '@nguoidung_07', caption: 'Cả nhóm cùng hô "Yes!"' },
+  { cat: 'A', ratio: '9x16', tone: 'paper', user: '@nguoidung_08', caption: 'Dòng chữ "yes" trên tờ báo' }
+];
+const catName = { A: 'Bài viết có từ "yes"', B: 'Video selfie', C: 'Ảnh ngoài trời' };
+
+function mockMedia(item) {
+  if (item.src) {
+    return `<div class="mock mock--${item.ratio} mock--alt">${item.video
+      ? `<video src="${item.src}" muted playsinline></video>`
+      : `<img src="${item.src}" alt="${escapeHtml(item.caption)}" loading="lazy">`}</div>`;
+  }
+  const deco = item.cat === 'A' ? '<span class="mock__lines"><i></i><i></i><i style="width:70%"></i><i></i><i style="width:55%"></i></span>'
+             : item.cat === 'C' ? '<span class="mock__frame"></span>' : '';
+  return `<div class="mock mock--${item.ratio} mock--${item.tone}${item.cat === 'A' ? ' mock--a' : ''}">${deco}<span class="mock__word">Yes</span></div>`;
+}
+
+function renderUgc(filter = 'all') {
+  $('ugc-grid').innerHTML = ugcItems
+    .map((item, i) => ({ item, i }))
+    .filter(({ item }) => filter === 'all' || item.cat === filter)
+    .map(({ item, i }) => `
+      <button type="button" class="ugc-card" onclick="openUgc(${i})" aria-label="${escapeHtml(catName[item.cat] + ': ' + item.caption)}">
+        <span class="ugc-card__tag sb-badge sb-badge--promo">${item.cat}</span>
+        ${item.cat === 'B' ? '<span class="ugc-card__play"><svg class="icon"><use href="#i-play"/></svg></span>' : ''}
+        <div class="ugc-card__media">${mockMedia(item)}</div>
+        <div class="ugc-card__meta">
+          <div class="ugc-card__user">${escapeHtml(item.user)}</div>
+          <div class="ugc-card__caption">${escapeHtml(item.caption)}</div>
+        </div>
+      </button>`).join('');
+}
+function openUgc(i) {
+  const item = ugcItems[i];
+  $('lb-media').innerHTML = mockMedia(item).replace('muted playsinline', 'controls playsinline');
+  $('lb-user').textContent = `${item.user} · ${catName[item.cat]}`;
+  $('lb-caption').textContent = item.caption;
+  openModal('ugc-lightbox');
+}
+function closeUgc() { closeModal('ugc-lightbox'); }
+document.querySelectorAll('.chip').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.chip').forEach(b => b.classList.remove('is-active'));
+  btn.classList.add('is-active');
+  renderUgc(btn.dataset.filter);
+}));
+
+/* ============ Bộ đếm SAY YES (mock-up, chỉ trong phiên xem) ============ */
+const sayYes = { total: 49000, mine: 0 };
+function renderSayYes() {
+  $('sy-total').textContent = fmt(sayYes.total);
+  $('sy-mine').textContent = fmt(sayYes.mine);
+  const pct = sayYes.total ? (sayYes.mine / sayYes.total) * 100 : 0;
+  $('sy-bar').style.width = (sayYes.mine ? Math.max(pct, 2) : 0) + '%';
+  $('sy-pct').textContent = sayYes.mine && pct < 0.01 ? '< 0,01%' : pct.toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + '%';
+  $('sy-progress').setAttribute('aria-valuenow', pct.toFixed(2));
+}
+
+/* ============ Popup đăng tải ============ */
+let uploadType = 'A', uploadUrl = null;
+function openUpload() { resetUpload(); openModal('upload-modal'); }
+function closeUpload() { closeModal('upload-modal'); }
+function resetUpload() {
+  $('upload-form-wrap').style.display = 'grid';
+  $('upload-success').classList.remove('is-visible');
+  $('upload-file').value = '';
+  $('upload-caption').value = '';
+  $('upload-preview').hidden = true;
+  $('upload-preview').innerHTML = '';
+  $('upload-placeholder').style.display = 'grid';
+  $('upload-error').classList.remove('is-visible');
+  uploadUrl = null;
+}
+document.querySelectorAll('.type-btn').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('is-active'));
+  btn.classList.add('is-active');
+  uploadType = btn.dataset.type;
+}));
+$('upload-file').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  $('upload-error').classList.remove('is-visible');
+  uploadUrl = URL.createObjectURL(file);
+  const isVideo = file.type.startsWith('video/');
+  $('upload-preview').innerHTML = (isVideo
+    ? `<video src="${uploadUrl}" muted controls playsinline></video>`
+    : `<img src="${uploadUrl}" alt="Xem trước tư liệu">`) + `<div class="sb-caption" style="margin-top:8px">${escapeHtml(file.name)}</div>`;
+  $('upload-preview').hidden = false;
+  $('upload-placeholder').style.display = 'none';
+});
+function submitUpload() {
+  const file = $('upload-file').files[0];
+  if (!file) { $('upload-error').classList.add('is-visible'); return; }
+  sayYes.mine += 1; sayYes.total += 1;
+  renderSayYes();
+  if (uploadUrl) {
+    ugcItems.unshift({ cat: uploadType, ratio: '4x5', src: uploadUrl, video: file.type.startsWith('video/'),
+      user: 'Bạn', caption: $('upload-caption').value.trim() || 'SAY YES của bạn' });
+    const active = document.querySelector('.chip.is-active');
+    renderUgc(active ? active.dataset.filter : 'all');
+  }
+  $('upload-mine').textContent = fmt(sayYes.mine);
+  $('upload-form-wrap').style.display = 'none';
+  $('upload-success').classList.add('is-visible');
+}
+
+/* ============ Giải pháp ============ */
+// Nội dung giữ từ bản mockup trước, chờ SeABank cung cấp thông tin sản phẩm chính thức
+const solutions = [
+  { tag: 'Say Yes với trải nghiệm', icon: 'i-card', title: 'Thẻ tín dụng SeABank',
+    desc: 'Say Yes với những trải nghiệm bạn xứng đáng. Hoàn tiền cho chi tiêu mua sắm, du lịch và ẩm thực.',
+    features: ['Miễn phí thường niên năm đầu', 'Trả góp 0% tại các đối tác liên kết', 'Hoàn tiền khi chi tiêu'] },
+  { tag: 'Say Yes với cuộc sống số', icon: 'i-phone', title: 'Ngân hàng số SeAMobile',
+    desc: 'Quản lý tài chính cá nhân và thanh toán hoá đơn ngay trên điện thoại, chỉ với một chạm.',
+    features: ['Chuyển tiền 24/7', 'Thanh toán QR tại cửa hàng', 'Theo dõi thu chi cá nhân'] },
+  { tag: 'Say Yes với tương lai', icon: 'i-piggy', title: 'Tiết kiệm & Tích lũy',
+    desc: 'Lãi suất cạnh tranh giúp kế hoạch của bạn về đích sớm hơn.',
+    features: ['Lãi suất theo kỳ hạn', 'Gửi tiết kiệm trực tuyến', 'Rút vốn linh hoạt khi cần'] },
+  { tag: 'Say Yes với dự định lớn', icon: 'i-home', title: 'Vay vốn linh hoạt',
+    desc: 'Nguồn vốn kịp thời cho ngôi nhà mơ ước hay chiếc xe bạn hằng mong.',
+    features: ['Thủ tục phê duyệt nhanh gọn', 'Thời hạn vay linh hoạt', 'Lãi suất ưu đãi giai đoạn đầu'] }
+];
+function updateSolution(i) {
+  const s = solutions[i];
+  $('sol-tag').textContent = s.tag;
+  $('sol-title').textContent = s.title;
+  $('sol-desc').textContent = s.desc;
+  $('sol-features').innerHTML = s.features.map(f =>
+    `<li><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span><span>${escapeHtml(f)}</span></li>`).join('');
+  $('sol-visual-use').setAttribute('href', '#' + s.icon);
+  document.querySelectorAll('.sol-tab').forEach((t, k) => {
+    t.classList.toggle('is-active', k === i);
+    t.setAttribute('aria-selected', k === i);
+  });
+}
+document.querySelectorAll('.sol-tab').forEach(t => t.addEventListener('click', () => updateSolution(+t.dataset.index)));
+
+/* ============ Form đăng ký (mô phỏng) ============ */
+$('campaignForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  if (!this.checkValidity()) { $('form-error').classList.add('is-visible'); return; }
+  $('form-error').classList.remove('is-visible');
+  const btn = this.querySelector('button[type="submit"]');
+  const label = btn.textContent;
+  btn.textContent = 'Đang gửi...'; btn.disabled = true;
+  setTimeout(() => {
+    this.style.display = 'none';
+    $('success-msg').classList.add('is-visible');
+    btn.textContent = label; btn.disabled = false;
+  }, 1200);
+});
+function resetForm() {
+  $('success-msg').classList.remove('is-visible');
+  const f = $('campaignForm'); f.style.display = 'grid'; f.reset();
+}
+
+/* ============ Thanh CTA mobile: hiện sau khi cuộn qua hero ============ */
+const ctaBar = $('mobile-cta');
+const io = new IntersectionObserver(([en]) => ctaBar.classList.toggle('is-visible', !en.isIntersecting));
+io.observe(document.querySelector('.hero__panel'));
+
+/* ============ MINIGAME: YES MAN 60 GIÂY ============ */
+const gameQuestions = [
+  'Mở tài khoản nhận quà không?', 'Hoàn tiền x2 không?', 'Mở sổ tiết kiệm không?', 'Đi du lịch không?',
+  'Mua vàng không?', 'Uống trà sữa không?', 'Nhận voucher không?', 'Mở thẻ tín dụng SeABank không?',
+  'Vay vốn lãi suất tốt không?', 'Chuyển tiền 24/7 không?', 'Say Yes với SeABank không?',
+  'Nhận Gift Box Mỹ Tâm không?', 'Săn vé YES Night không?'
+];
+// Mỗi vòng ROUND_MS; mỗi vòng tối đa 1 YES => tối đa ~66 YES trong 60 giây
+const ROUND_MS = 900;
+let gameTimeLeft = 60, gameScore = 0, gameInterval = null, roundTimer = null, gameActive = false, roundAnswered = false, lastQuestion = '';
+
+function resetGameUI() {
+  gameActive = false; clearInterval(gameInterval); clearInterval(roundTimer);
+  gameScore = 0; gameTimeLeft = 60;
+  $('game-score').textContent = 0; $('game-timer').textContent = '60s';
+  $('game-result-overlay').classList.remove('is-visible');
+  $('game-start-overlay').classList.add('is-visible');
+}
+function openMinigame() { resetGameUI(); openModal('minigame-modal'); }
+function closeMinigame() { resetGameUI(); closeModal('minigame-modal'); }
+
+function startGame() {
+  gameScore = 0; gameTimeLeft = 60; gameActive = true; lastQuestion = '';
+  $('game-score').textContent = 0; $('game-timer').textContent = '60s';
+  $('game-start-overlay').classList.remove('is-visible');
+  $('game-result-overlay').classList.remove('is-visible');
+  startRound();
+  clearInterval(gameInterval);
+  gameInterval = setInterval(() => {
+    gameTimeLeft--; $('game-timer').textContent = gameTimeLeft + 's';
+    if (gameTimeLeft <= 0) endGame();
+  }, 1000);
+  clearInterval(roundTimer);
+  roundTimer = setInterval(startRound, ROUND_MS);
+}
+function startRound() {
+  if (!gameActive) return;
+  roundAnswered = false;
+  const yesSlot = Math.random() < 0.5 ? 1 : 2;
+  renderSlot(1, yesSlot === 1 ? 'yes' : 'no');
+  renderSlot(2, yesSlot === 2 ? 'yes' : 'no');
+  positionButtons();
+  nextQuestion();
+}
+function renderSlot(n, role) {
+  const b = $('slot-' + n);
+  b.dataset.role = role;
+  b.classList.remove('role-yes', 'role-no', 'is-pressed', 'is-wrong');
+  b.classList.add(role === 'yes' ? 'role-yes' : 'role-no');
+  b.textContent = role === 'yes' ? 'YES' : 'NO';
+}
+function positionButtons() {
+  const area = $('game-play-area'), W = area.clientWidth, H = area.clientHeight;
+  const bw = 144, bh = 64, pad = 16, topMin = 150;
+  const topMax = Math.max(topMin, H - bh - pad), leftMax = Math.max(pad, W - bw - pad);
+  const rnd = () => ({ top: topMin + Math.random() * (topMax - topMin), left: pad + Math.random() * (leftMax - pad) });
+  let p1 = rnd(), p2 = rnd(), tries = 0;
+  while (Math.abs(p1.left - p2.left) < bw && Math.abs(p1.top - p2.top) < bh && tries++ < 10) p2 = rnd();
+  Object.assign($('slot-1').style, { top: p1.top + 'px', left: p1.left + 'px' });
+  Object.assign($('slot-2').style, { top: p2.top + 'px', left: p2.left + 'px' });
+}
+function nextQuestion() {
+  let q, tries = 0;
+  do { q = gameQuestions[Math.floor(Math.random() * gameQuestions.length)]; } while (q === lastQuestion && tries++ < 5);
+  lastQuestion = q; $('game-question').textContent = q;
+  const card = $('game-card');
+  card.style.transform = 'translateX(-50%) scale(.94)'; card.style.opacity = '.6';
+  requestAnimationFrame(() => setTimeout(() => { card.style.transform = 'translateX(-50%) scale(1)'; card.style.opacity = '1'; }, 20));
+}
+function handleSlotClick(n) {
+  if (!gameActive || roundAnswered) return;
+  const b = $('slot-' + n);
+  if (b.dataset.role === 'yes') {
+    roundAnswered = true; gameScore++; $('game-score').textContent = gameScore; b.classList.add('is-pressed');
+  } else {
+    b.classList.add('is-wrong'); setTimeout(() => b.classList.remove('is-wrong'), 220);
+  }
+}
+function endGame() {
+  gameActive = false; clearInterval(gameInterval); clearInterval(roundTimer);
+  $('result-count').textContent = gameScore;
+  let voucher = 'Chưa đạt mốc quà, chơi lại nhé!', icon = 'i-refresh';
+  if (gameScore >= 50) { voucher = 'Voucher 200K'; icon = 'i-trophy'; }
+  else if (gameScore >= 40) { voucher = 'Voucher 100K'; icon = 'i-gift'; }
+  else if (gameScore >= 30) { voucher = 'Voucher 50K'; icon = 'i-gift'; }
+  $('result-icon').setAttribute('href', '#' + icon);
+  $('result-voucher').textContent = voucher;
+  $('game-result-overlay').classList.add('is-visible');
+}
+
+/* ============ Khởi tạo ============ */
+renderUgc();
+renderSayYes();
+updateSolution(0);
+</script>
+</body>
+</html>
